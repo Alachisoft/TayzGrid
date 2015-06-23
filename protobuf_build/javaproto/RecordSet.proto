@@ -1,0 +1,11 @@
+import "RecordColumn.proto";
+
+option java_outer_classname="RecordSetProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message RecordSet
+{
+	optional int32 rowCount = 1;
+	repeated string keys = 2;
+	repeated RecordColumn columns = 3;
+}

@@ -1,0 +1,152 @@
+ALACHISOFT-CLIENT-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    enterprises
+                FROM RFC1155-SMI
+	OBJECT-TYPE
+                FROM RFC-1211;
+
+DisplayString ::= OCTET STRING
+
+alachisoft	OBJECT IDENTIFIER ::= {enterprises 12}
+tayzgrid		OBJECT IDENTIFIER ::= {alachisoft 1}
+
+
+client OBJECT IDENTIFIER ::= {tayzgrid 2}
+
+--
+--	Client counters
+--
+	
+ClientCpuUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Percentage of CPU utilized by the client for performing operations."
+	::= {client 0}
+	
+MemoryUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"The memory (in Magabyte) being used by the runing client."
+	::= {client 1}
+
+NetworkUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Amount of network used by client to send/recived operations in percentage."
+	::= {client 2}
+
+RequestsPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of requests received (meaning cache commands like add, get, insert, remove etc.) from all clients by this cache server."
+	::= {client 3}
+
+AdditionsPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Add operations per second."
+	::= {client 4}
+
+FetchesPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Get operations per second."
+	::= {client 5}
+
+UpdatesPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Insert operations per second."
+	::= {client 6}
+	
+DeletesPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Remove operations per second."
+	::= {client 7}
+
+ReadOperationsPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Read operations per second."
+	::= {client 8}
+
+WriteOperationsPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Write operations per second."
+	::= {client 9}	
+
+RequestQueueSize OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total number of requests from all clients on a single machine waiting for response from cache server."
+	::= {client 10}
+
+AverageItemSize OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average size of the item added to/fetched from the cache by the client."
+	::= {client 11}
+
+AverageMicroSecPerEvent OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average per milli-second time of Event operations."
+	::= {client 12}
+
+AverageMicroSecPerSerialization OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average time, in microseconds, taken to serialize/deserialize one object."
+	::= {client 14}
+
+EventProcessedPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Counter for events processed per second."
+	::= {client 16}
+
+EventTriggeredPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Counter for events Triggered/Received per second."
+	::= {client 17}
+
+	
+	
+END
+	

@@ -1,0 +1,8 @@
+import "KeyValuePair.proto";
+
+option java_outer_classname="GetRunningServersResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message GetRunningServersResponse {
+	repeated KeyValuePair keyValuePair = 1;
+}

@@ -1,0 +1,7 @@
+
+option java_outer_classname="MapReduceTaskCallbackCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message MapReduceTaskCallbackCommand{
+	optional int64 callbackId = 1;
+	optional string taskId = 2;
+}

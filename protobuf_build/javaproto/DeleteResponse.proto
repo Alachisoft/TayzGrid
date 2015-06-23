@@ -1,0 +1,5 @@
+option java_outer_classname="DeleteResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message DeleteResponse {
+	optional bool success = 1;
+}

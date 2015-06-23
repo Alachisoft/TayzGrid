@@ -1,0 +1,9 @@
+import "Value.proto";
+import "KeyValuePackageResponse.proto";
+
+
+option java_outer_classname="GetGroupDataResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetGroupDataResponse {
+	optional KeyValuePackageResponse keyValuePackage = 1;
+}

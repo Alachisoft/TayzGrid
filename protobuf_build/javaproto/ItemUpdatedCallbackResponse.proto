@@ -1,0 +1,11 @@
+import "EventId.proto";
+option java_outer_classname="ItemUpdatedCallbackResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message ItemUpdatedCallbackResponse 
+{
+	optional bytes key = 1;
+	optional sint32 callbackId = 2;
+	optional EventId eventId = 3;
+	optional int32 flag = 4;
+	optional sint32 dataFilter = 5;
+}

@@ -1,0 +1,8 @@
+import "KeyExceptionPackageResponse.proto";
+
+
+option java_outer_classname="BulkAddResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message BulkAddResponse {
+	optional KeyExceptionPackageResponse keyExceptionPackage = 1;
+}

@@ -1,0 +1,14 @@
+
+option java_outer_classname="OpenStreamCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message OpenStreamCommand 
+{
+	optional bytes key = 1;
+	optional int32 streamMode = 2;
+	optional string group = 3;
+	optional string subGroup = 4;
+	optional int64 absoluteExpiration = 5;
+	optional int64 slidingExpiration = 6;
+	optional int32 priority = 7;
+	optional int64 requestId = 8;
+}

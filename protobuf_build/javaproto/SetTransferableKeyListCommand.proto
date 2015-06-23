@@ -1,0 +1,8 @@
+
+option java_outer_classname="SetTransferableKeyListCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message SetTransferableKeyListCommand 
+{
+	optional int64 requestId = 1;
+	repeated bytes keyList = 2;
+}

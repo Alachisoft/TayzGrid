@@ -1,0 +1,9 @@
+option java_outer_classname="TaskEnumeratorEntryProtocol";
+
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message TaskEnumeratorEntry
+{
+	optional bytes key = 1;
+	optional bytes value = 2;
+}

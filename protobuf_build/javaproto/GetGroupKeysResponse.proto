@@ -1,0 +1,6 @@
+
+option java_outer_classname="GetGroupKeysResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetGroupKeysResponse {
+	repeated bytes keys = 1;	
+}

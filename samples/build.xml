@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <project name="tayzgrid-custom-build" default="samples_build" basedir=".">
+  <description>builds tayzgrid samples</description>  
+  <property name="tayzgrid_src_build" location="../src/dist_all" />
+  <property name="tayzgrid_samples_build" location="./dist_all/"/>
+  <property name="resources_integrations" location="../resources/integrations"/>
+    <property name="source-version" value ="1.6"/>
+  <property name="target-version" value ="1.6"/> 
+
+  <!-- ========================== samples ======================= -->
+
+  <property name="samples_basicoperations" location="basicoperations"/>
+  <property name="basicoperations_src" location="${samples_basicoperations}/src"/>   
+
+  <property name="samples_bulkoperations" location="bulkoperations"/>
+  <property name="bulkoperations_src" location="${samples_bulkoperations}/src"/>   
+
+  <property name="samples_cacheitemversioning" location="cacheitemversioning"/>
+  <property name="cacheitemversioning_src" location="${samples_cacheitemversioning}/src"/>   
+ 
+  <property name="samples_dataproviders" location="dataproviders"/>
+  <property name="dataproviders_src" location="${samples_dataproviders}/src"/>   
+
+  <property name="samples_events" location="events"/>
+  <property name="events_src" location="${samples_events}/src"/>   
+
+  <property name="samples_groupstags" location="groupsandtags"/>
+  <property name="groupstags_src" location="${samples_groupstags}/src"/>   
+
+  <property name="samples_hibernate" location="hibernate"/>
+  <property name="hibernate_src" location="${samples_hibernate}/src"/>   
+
+  <property name="samples_itemlocking" location="itemlocking"/>
+  <property name="itemlocking_src" location="${samples_itemlocking}/src"/>     
+
+  <property name="samples_spring" location="spring"/>
+  <property name="spring_src" location="${samples_spring}/src"/>     
+
+  <property name="samples_oql" location="objectquerylanguage"/>
+  <property name="oql_src" location="${samples_oql}/src"/>
+
+  <property name="samples_session" location="sessions"/>
+  <property name="sessions_src" location="${samples_session}/src"/>
+
+   <property name="data" location="data"/>
+   <property name="data_src" location="${data}/src"/> 	
+  
+ 
+  <!-- ============================ jar names ========================== -->
+
+  <property name="cachejar" value="tg-cache.jar"/>
+  <property name="runtimejar" value="tg-runtime.jar"/>
+  <property name="serializationjar" value="tg-serialization.jar"/>
+  <property name="commonjar" value="tg-common.jar"/>
+  <property name="parserjar" value="tg-parser.jar"/>
+  <property name="clusterjar" value="tg-cluster.jar"/>
+  <property name="storagejar" value="tg-storage.jar"/>
+  <property name="socketserverjar" value="tg-socketserver.jar"/>
+  <property name="clientjar" value="tg-client.jar"/>
+  <property name="jmxsnmpjar" value="tg-jmxsnmp.jar"/>
+  <property name="managementjar" value="tg-management.jar"/>
+  <property name="servicejar" value="tayzgridd.jar"/>
+  <property name="utiljar" value="tg-util.jar" />
+
+  
+  <property name="samples-basicoperation-jar"       value="tayzgrid-basicoperations.jar"/>  
+  <property name="samples-bulkoperation-jar"        value="tayzgrid-bulkooperations.jar"/>  
+  <property name="samples-cacheitemversioning-jar"  value="tayzgrid-cacheitemversioning.jar"/>    
+  <property name="samples-dataprov-jar"             value="tayzgrid-dataproviders.jar"/>  
+  <property name="samples-events-jar"               value="tayzgrid-events.jar"/>  
+  <property name="samples-groupstags-jar"           value="tayzgrid-groupsandtags.jar"/>  
+  <property name="samples-hibernate-jar"            value="tayzgrid-hibernate.jar"/>  
+  <property name="samples-itemlocking-jar"          value="tayzgrid-itemlocking.jar"/>  
+  <property name="samples-spring-jar"               value="tayzgrid-spring.jar"/>  
+  <property name="samples-oql-jar"                  value="tayzgrid-objectquerylanguage.jar"/>  
+  <property name="samples-session-jar"              value="tayzgrid-sessions.jar"/>   
+   <property name="data-jar"           				value="data.jar"/> 
+  <!-- ======================== manifest information ======================== -->
+    
+  <property name="class_path_samples" value=". ../../../lib/${runtimejar} ../../../lib/${commonjar} ../../../lib/${socketserverjar} ../../../lib/${serializationjar}  ../../../lib/${parserjar} ../../../lib/${clusterjar}  ../../../lib/${clientjar} ../../../lib/${storagejar}  ../../../lib/${cachejar} ../../../lib/${managementjar} ../lib/resources/cache-api-1.0.0.jar ../../../lib/${jmxsnmpjar} ../../../lib/resources/guava-13.0.1.jar ../../../lib/resources/guice-3.0.jar ../../../lib/resources/guice-multibindings-3.0.jar ../../../lib/resources/javassist.jar ../../../lib/resources/javax.mail.jre16_1.4.3.jar ../../../lib/resources/jena-2.5.4.jar ../../../lib/resources/jna.jar ../../../lib/resources/log4j-1.2.16.jar ../ ../../../lib/resources/ojdbc6.jar ../../../lib/resources/platform.jar ../../../lib/resources/snmp4j-2.1.0.jar ../../../lib/resources/sqljdbc4.jar ../../../lib/resources/paranamer-2.3.jar ../../../lib/resources/sigar.jar ../../../lib/resources/libsigar-amd64-linux.so ../../../lib/resources/sigar-amd64-winnt.dll ../../../lib/resources/log4jna.jar " />  
+
+  <!-- ============================================================= -->
+  <!-- ========================== samples ========================== -->
+  <!-- ============================================================= -->
+<target name="samples_build" depends="clean,data_target,
+      samples_oql_target,
+      samples_itemlocking_target,      
+      samples_groupstags_target,
+      samples_events_target,      
+      samples_cacheitemversioning_target,
+      samples_bulk_target,
+      samples_basic_target,     
+      samples_dataproviders_target,
+	  samples_hibernate_target">
+	  <delete dir= "${tayzgrid_samples_build}"/>
+	  <mkdir dir= "${tayzgrid_samples_build}"/>
+	  <copy todir="${tayzgrid_samples_build}" flatten="true">
+		<fileset dir="./">
+			  <include name="**/*.jar"/>
+			  <type type="file"/>
+		</fileset>
+	  </copy>
+	  <antcall target="clean"/>
+  </target>
+
+ <target name= "clean">
+    <delete includeemptydirs="true">
+        <fileset  dir=".">
+          <include name="**/build/**" />
+		  <include name="**/dist/**" />
+    </fileset>
+  </delete>
+ </target>	
+	  
+
+  <target name="data_target">
+    <mkdir dir="${data}/build/meta-inf"/>
+    <mkdir dir="${data}/build"/>
+    <mkdir dir="${data}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${data}/build" source="${source-version}"  srcdir="${data_src}" target="${target-version}" />
+    <jar basedir="${data}/build" destfile="${data}/dist/${data-jar}" />     
+  </target>	  
+
+  <target name="samples_oql_target">
+    <mkdir dir="${samples_oql}/build/meta-inf"/>
+    <mkdir dir="${samples_oql}/build"/>
+    <mkdir dir="${samples_oql}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${samples_oql}/build" source="${source-version}"  srcdir="${oql_src}" target="${target-version}">
+      <classpath>
+		  <fileset dir="${data}/dist">
+			<include name="**/*.jar"/>
+		  </fileset>
+	  	 <fileset dir="${tayzgrid_src_build}">
+			<include name="**/*.jar" />
+		  </fileset>     
+	  </classpath>
+    </javac>
+    <jar basedir="${samples_oql}/build" destfile="${samples_oql}/dist/${samples-oql-jar}">
+      <manifest>
+       <attribute name="class-path" value="${class_path_samples}"/>
+       <attribute name="main-class" value="com.alachisoft.tayzgrid.samples.Objectquerylanguage"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="samples_itemlocking_target">
+    <mkdir dir="${samples_itemlocking}/build/meta-inf"/>
+    <mkdir dir="${samples_itemlocking}/build"/>
+    <mkdir dir="${samples_itemlocking}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${samples_itemlocking}/build" source="${source-version}"  srcdir="${itemlocking_src}" target="${target-version}">
+      <classpath>
+		  <fileset dir="${data}/dist">
+		  <include name="**/*.jar"/>
+		  </fileset>
+		  <fileset dir="${tayzgrid_src_build}">
+		  <include name="**/*.jar"/>
+		  </fileset>     
+	  </classpath>
+    </javac>
+    <jar basedir="${samples_itemlocking}/build" destfile="${samples_itemlocking}/dist/${samples-itemlocking-jar}">
+      <manifest>
+       <attribute name="class-path" value="${class_path_samples}"/>
+       <attribute name="main-class" value="com.alachisoft.tayzgrid.samples.itemlocking"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="samples_groupstags_target">
+     <mkdir dir="${samples_groupstags}/build/meta-inf"/>
+    <mkdir dir="${samples_groupstags}/build"/>
+    <mkdir dir="${samples_groupstags}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${samples_groupstags}/build" source="${source-version}"  srcdir="${groupstags_src}" target="${target-version}">
+      <classpath>
+		  <fileset dir="${data}/dist">
+		  <include name="**/*.jar"/>
+		  </fileset>
+	  
+		  <fileset dir="${tayzgrid_src_build}">
+		  <include name="**/*.jar"/>
+		  </fileset>     
+	  </classpath>
+    </javac>
+    <jar basedir="${samples_groupstags}/build" destfile="${samples_groupstags}/dist/${samples-groupstags-jar}">
+      <manifest>
+       <attribute name="class-path" value="${class_path_samples}"/>
+       <attribute name="main-class" value="com.alachisoft.tayzgrid.samples.groupsandtags"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="samples_events_target">
+    <mkdir dir="${samples_events}/build/meta-inf"/>
+    <mkdir dir="${samples_events}/build"/>
+    <mkdir dir="${samples_events}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${samples_events}/build" source="${source-version}"  srcdir="${events_src}" target="${target-version}">
+      <classpath>
+		  <fileset dir="${data}/dist">
+		  <include name="**/*.jar"/>
+		  </fileset>
+	  
+		  <fileset dir="${tayzgrid_src_build}">
+		  <include name="**/*.jar"/>
+		  </fileset>     
+	  </classpath>
+    </javac>
+    <jar basedir="${samples_events}/build" destfile="${samples_events}/dist/${samples-events-jar}">
+      <manifest>
+       <attribute name="class-path" value="${class_path_samples}"/>
+       <attribute name="main-class" value="com.alachisoft.tayzgrid.samples.events"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="samples_cacheitemversioning_target">
+    <mkdir dir="${samples_cacheitemversioning}/build/meta-inf"/>
+    <mkdir dir="${samples_cacheitemversioning}/build"/>
+    <mkdir dir="${samples_cacheitemversioning}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${samples_cacheitemversioning}/build" source="${source-version}"  srcdir="${cacheitemversioning_src}" target="${target-version}">
+      <classpath>
+		  <fileset dir="${data}/dist">
+		  <include name="**/*.jar"/>
+		  </fileset>
+	  
+		  <fileset dir="${tayzgrid_src_build}">
+		  <include name="**/*.jar"/>
+		  </fileset>     
+	  </classpath>
+    </javac>
+    <jar basedir="${samples_cacheitemversioning}/build" destfile="${samples_cacheitemversioning}/dist/${samples-cacheitemversioning-jar}">
+      <manifest>
+       <attribute name="class-path" value="${class_path_samples}"/>
+       <attribute name="main-class" value="com.alachisoft.tayzgrid.samples.cacheitemversioning"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="samples_bulk_target">
+  
+    <mkdir dir="${samples_bulkoperations}/build/meta-inf"/>
+    <mkdir dir="${samples_bulkoperations}/build"/>
+    <mkdir dir="${samples_bulkoperations}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${samples_bulkoperations}/build" source="${source-version}"  srcdir="${bulkoperations_src}" target="${target-version}">
+      <classpath>
+		  <fileset dir="${data}/dist">
+		  <include name="**/*.jar"/>
+		  </fileset>
+	  
+		  <fileset dir="${tayzgrid_src_build}">
+		  <include name="**/*.jar"/>
+		  </fileset>     
+	  </classpath>
+    </javac>
+    <jar basedir="${samples_bulkoperations}/build" destfile="${samples_bulkoperations}/dist/${samples-bulkoperation-jar}">
+      <manifest>
+       <attribute name="class-path" value="${class_path_samples}"/>
+       <attribute name="main-class" value="com.alachisoft.tayzgrid.samples.bulkoperations"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="samples_basic_target">
+    
+    <mkdir dir="${samples_basicoperations}/build/meta-inf"/>
+    <mkdir dir="${samples_basicoperations}/build"/>
+    <mkdir dir="${samples_basicoperations}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${samples_basicoperations}/build" source="${source-version}"  srcdir="${basicoperations_src}" target="${target-version}">
+      <classpath>
+		  <fileset dir="${data}/dist">
+		  <include name="**/*.jar"/>
+		  </fileset>
+	  
+		  <fileset dir="${tayzgrid_src_build}">
+		  <include name="**/*.jar"/>
+		  </fileset>     
+	  </classpath>
+    </javac>
+    <jar basedir="${samples_basicoperations}/build" destfile="${samples_basicoperations}/dist/${samples-basicoperation-jar}">
+      <manifest>
+       <attribute name="class-path" value="${class_path_samples}"/>
+       <attribute name="main-class" value="com.alachisoft.tayzgrid.samples.basicoperations"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="samples_hibernate_target">
+
+    <mkdir dir="${samples_hibernate}/build/meta-inf"/>
+    <mkdir dir="${samples_hibernate}/build"/>
+    <mkdir dir="${samples_hibernate}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${samples_hibernate}/build" source="${source-version}"  srcdir="${hibernate_src}" target="${target-version}">
+      <classpath>
+		  <fileset dir="${data}/dist">
+		  <include name="**/*.jar"/>
+		  </fileset>
+	  
+		  <fileset dir="${tayzgrid_src_build}">
+		  <include name="**/*.jar"/>
+		  </fileset> 
+            <fileset dir="${resources_integrations}">
+		  <include name="**/*.jar"/>
+		  </fileset>    
+		  
+	  </classpath>
+    </javac>
+    <jar basedir="${samples_hibernate}/build" destfile="${samples_hibernate}/dist/${samples-hibernate-jar}">
+      <manifest>
+       <attribute name="class-path" value="${class_path_samples}"/>
+       <attribute name="main-class" value="hibernator.bll.hibernatetest"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="samples_dataproviders_target">
+
+    <mkdir dir="${samples_dataproviders}/build/meta-inf"/>
+    <mkdir dir="${samples_dataproviders}/build"/>
+    <mkdir dir="${samples_dataproviders}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${samples_dataproviders}/build" source="${source-version}"  srcdir="${dataproviders_src}" target="${target-version}">
+      <classpath>
+		  <fileset dir="${data}/dist">
+		  <include name="**/*.jar"/>
+		  </fileset>
+	  
+		  <fileset dir="${tayzgrid_src_build}">
+		  <include name="**/*.jar"/>
+		  </fileset>     
+	  </classpath>
+    </javac>
+    <jar basedir="${samples_dataproviders}/build" destfile="${samples_dataproviders}/dist/${samples-dataprov-jar}">
+      <manifest>
+       <attribute name="class-path" value="${class_path_samples}"/>
+       <attribute name="main-class" value="com.alachisoft.tayzgrid.samples.dataproviders"/>
+     </manifest>
+   </jar>
+  </target>
+
+</project>
+
+

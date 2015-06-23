@@ -1,0 +1,11 @@
+import "AddCommand.proto";
+
+
+option java_outer_classname="BulkAddCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message BulkAddCommand {
+	optional int64 requestId = 1;
+	optional sint32 datasourceItemAddedCallbackId = 2; 
+	optional string providerName = 3;
+	repeated AddCommand addCommand = 4;	
+}

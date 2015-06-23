@@ -1,0 +1,13 @@
+
+option java_outer_classname="AggregateFunctionTypeProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+enum AggregateFunctionType 
+{
+		SUM = 0;
+        COUNT = 1;
+        MIN = 2;
+        MAX = 3;
+        AVG = 4;
+        NOTAPPLICABLE = 5;
+}

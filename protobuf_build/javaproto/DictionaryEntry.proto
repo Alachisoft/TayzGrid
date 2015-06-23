@@ -1,0 +1,8 @@
+import "Value.proto";
+
+option java_outer_classname="DictionaryEntryProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message DictionaryEntry {
+	optional string key = 1;
+	repeated Value values = 2;
+}

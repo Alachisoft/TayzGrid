@@ -1,0 +1,6 @@
+
+option java_outer_classname="MapReduceTaskResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message MapReduceTaskResponse {
+	optional bytes taskResult = 1;
+}

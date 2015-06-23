@@ -1,0 +1,8 @@
+import "EventId.proto";
+option java_outer_classname="CacheStoppedEventResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message CacheStoppedEventResponse 
+{
+	optional string cacheId = 1;
+	optional EventId eventId = 2;
+}

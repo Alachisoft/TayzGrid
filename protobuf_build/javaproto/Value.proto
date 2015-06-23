@@ -1,0 +1,6 @@
+
+option java_outer_classname="ValueProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message Value {
+	repeated bytes data = 1;
+}

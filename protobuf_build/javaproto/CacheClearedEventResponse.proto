@@ -1,0 +1,7 @@
+
+option java_outer_classname="CacheClearedEventResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+import "EventId.proto";
+
+message CacheClearedEventResponse {optional EventId eventId = 1;
+}

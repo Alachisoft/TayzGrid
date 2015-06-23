@@ -1,0 +1,8 @@
+import "GroupEnumerationPointer.proto";
+
+option java_outer_classname="GetGroupNextChunkResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetGroupNextChunkResponse {
+	optional GroupEnumerationPointer groupEnumerationPointer = 1;
+	repeated bytes keys = 2;
+}

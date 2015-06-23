@@ -1,0 +1,7 @@
+
+option java_outer_classname="GetEncryptionResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetEncryptionResponse 
+{
+	optional bytes encryptionString = 1;
+}

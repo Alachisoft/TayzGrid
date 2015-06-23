@@ -1,0 +1,6 @@
+
+option java_outer_classname="GetTypeInfoMapCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetTypeInfoMapCommand {
+	optional int64 requestId = 1;
+}

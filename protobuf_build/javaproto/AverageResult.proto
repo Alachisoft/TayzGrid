@@ -1,0 +1,9 @@
+package com.alachisoft.tayzgrid.common.protobuf;
+
+option java_outer_classname="AverageResultProtocol";
+
+message AverageResult
+{
+	optional string sum = 1;
+	optional string count = 2;
+}

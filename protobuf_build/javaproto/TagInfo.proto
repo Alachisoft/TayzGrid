@@ -1,0 +1,7 @@
+
+option java_outer_classname="TagInfoProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message TagInfo {
+	optional string type = 1;
+	repeated string tags = 2;
+}

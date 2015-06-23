@@ -1,0 +1,10 @@
+import "EventId.proto";
+option java_outer_classname="MapReduceTaskCallbackResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message MapReduceTaskCallbackResponse {
+	optional EventId eventId = 1;
+	optional string taskId = 2;
+	optional int64 taskStatus = 3;
+	optional bytes taskResult = 4;
+	optional int64 callbackId = 5;
+}

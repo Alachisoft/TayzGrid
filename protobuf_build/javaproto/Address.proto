@@ -1,0 +1,6 @@
+option java_outer_classname="AddressProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message Address {
+	optional int32 port = 1;
+	optional string ip = 2;
+}

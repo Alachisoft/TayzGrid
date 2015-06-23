@@ -1,0 +1,558 @@
+ALACHISOFT-CACHE-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    enterprises
+                FROM RFC1155-SMI
+	OBJECT-TYPE
+                FROM RFC-1211;
+
+DisplayString ::= OCTET STRING
+
+alachisoft	OBJECT IDENTIFIER ::= {enterprises 12}
+tayzgrid		OBJECT IDENTIFIER ::= {alachisoft 1}
+
+cache OBJECT IDENTIFIER ::= {tayzgrid 1}
+	
+--
+--	Cache counters
+--
+
+CacheName OBJECT-TYPE
+	SYNTAX DisplayString
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Name of the cache."
+	::= {cache 0}
+
+Count OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items in the cache."
+	::= {cache 1}
+
+CacheLastAccessCount  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items which are older then the access interval specified in the config."
+	::= {cache 2}
+
+AdditionsPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Add operations per second."
+	::= {cache 3}
+
+HitsPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of successful Get operations per second."
+	::= {cache 4}
+
+UpdatesPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Insert operations per second."
+	::= {cache 5}
+
+MissesPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of failed Get operations per second."
+	::= {cache 6}
+
+FetchesPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Get operations per second."
+	::= {cache 7}	
+
+DeletesPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Remove operations per second."
+	::= {cache 8}	
+
+AverageMicroSecPerAdd  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average time, in microseconds, taken to complete one add operation."
+	::= {cache 9}
+
+AverageMicroSecPerInsert  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average time, in microseconds, taken to complete one insert operation."
+	::= {cache 10}
+
+AverageMicroSecPerFetch  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average time, in microseconds, taken to complete one fetch operation."
+	::= {cache 11}
+
+AverageMicroSecPerRemove  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average time, in microseconds, taken to complete one remove operation."
+	::= {cache 12}
+
+HitsRatioPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Ratio of number of successful Get operations per second and total number of Get operations per second"
+	::= {cache 13}
+
+ExpirationsPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items being expired currently per second"
+	::= {cache 14}
+
+EvictionsPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items evicted per second."
+	::= {cache 15}
+
+StateTransferPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items this node is either reading from other nodes or sending to other nodes during a state transfer mode."
+	::= {cache 16}
+
+DataBalancePerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items this node is either reading from other nodes or sending to other nodes during a Data Load Balancing mode."
+	::= {cache 17}
+
+MirrorQueueSize  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items in the Mirror queue."
+	::= {cache 23}	
+	
+ReadthruPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Readthru operations per second."
+	::= {cache 24}	
+	
+WritethruPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Writethru operations per second."
+	::= {cache 25}
+	
+CacheSize  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"maximun size of cache im MB occpuied by items in the cache "
+	::= {cache 26}
+	
+ClusterOpsPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		""
+	::= {cache 27}	
+	
+Write-behindQueueCount  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Write-behind operations in queue."
+	::= {cache 28}	
+	
+Write-behindPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Writebehind operations per second."
+	::= {cache 29}	
+	
+AverageMicroSecPerDatasourceWrite  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average time, in microseconds, taken to complete one data source write operation."
+	::= {cache 30}	
+	
+Write-behindFailureRetryCount  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Writebehind requeued operations."
+	::= {cache 31}	
+	
+Write-behindEvictionsPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Writebehind requeued operations evicted per second."
+	::= {cache 32}	
+	
+DatasourceUpdatesPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of Datasource updates operations per second."
+	::= {cache 33}	
+	
+AverageMicroSecPerDatasourceUpdate  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average time, in microseconds, taken to complete one data source update operation."
+	::= {cache 34}	
+	
+DatasourceFailedOperationsPerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of datasource failed operations per second."
+	::= {cache 35}	
+	
+CurrentBatchOperationsCount  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of writebehind operations in selected batch."
+	::= {cache 36}	
+	
+RequestsPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of requests received (meaning cache commands like add, get, insert, remove etc.) from all clients by this cache server."
+	::= {cache 50}
+	
+ResponsesPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of responses received by all clients from the cache server."
+	::= {cache 51}
+	
+ClientsBytesSentPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Bytes being sent from cache server to all its clients."
+	::= {cache 52}
+	
+ClientBytesRecievedPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Bytes being received by cache server from all its clients."
+	::= {cache 53}
+	
+AverageMicroSecPerCacheOperation OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average time, in microseconds, taken to complete one cache-operation."
+	::= {cache 54}
+	
+
+TotalCpuUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total CPU consumed by Tayzgrid Server process. "
+	::= {cache 56}
+
+TotalFreePhysicalMemory OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Available free memory for Tayzgrid Server process. "
+	::= {cache 57}
+
+TotalMemoryUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total memory used by Tayzgrid Server process. "
+	::= {cache 58}
+
+JvCacgeCpuUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"CPU consumed by Tayzgrid process"
+	::= {cache 59}
+
+TayzgridAvailableMemory OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Memory available to Tayzgrid process. "
+	::= {cache 60}
+
+TayzgridMaxMemory OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Maximum memory occupied by Tayzgrid process."
+	::= {cache 61}
+
+TayzgridMemoryUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total memory used by Tayzgrid process. "
+	::= {cache 62}
+
+TayzgridNetworkUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total network usage consumed by Tayzgrid process. "
+	::= {cache 63}
+	
+	
+QueryIndexSize OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Size of Query index. "
+	::= {cache 64}	
+	
+	
+ExpirationIndexSize OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Size of Expiration index. "
+	::= {cache 65}
+
+	
+EvictionIndexSize OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Size of Eviction index."
+	::= {cache 66}	
+	
+	
+QueriesPersec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Queries process per sec."
+	::= {cache 67}
+
+	
+AverageusPerQueryExecution OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Time taken by query processing in micro sec."
+	::= {cache 68}
+
+AverageQuerySize OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average result set size against the query."
+	::= {cache 69}
+
+	
+CacheMaxSize OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"maximun size of cache im MB."
+	::= {cache 70}
+
+	
+ClientConnected OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"maximun Client Connected to the cache."
+	::= {cache 71}
+
+	
+MirrorStarted OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Cache Started as Mirror."
+	::= {cache 72}
+	
+INProcCache OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Cache Started in InProc Mode."
+	::= {cache 73}
+	
+NodeName OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Node Name"
+	::= {cache 74}	
+
+
+NodeStatus OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Node Status."
+	::= {cache 75}	
+
+RunningCacheServers OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"get Running Cache Servers."
+	::= {cache 76}	
+
+CacheServers OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Cache Servers."
+	::= {cache 77}	
+
+MPerRpendingtasks OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total number of waiting tasks."
+	::= {cache 78}	
+
+MPerRrunningtasks OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total number of running tasks."
+	::= {cache 79}	
+
+MPerRnoofrecordsmappedPersec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items Mapped per sec."
+	::= {cache 80}	
+
+MPerRnoofrecordscombinedPersec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items Mapped per sec."
+	::= {cache 81}	
+
+MPerRnoofrecordsreducedPersec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items Mapped per sec."
+	::= {cache 82}
+
+PID OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"get process id"
+	::= {cache 83}	
+	
+LocalAddress OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"get Local Address."
+	::= {cache 84}		
+	
+END

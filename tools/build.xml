@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <project name="tayzgrid-custom-build" default="build" basedir=".">
+  <description>builds tayzgrid tools </description>
+  <property name="src_build" location="../src/dist_all" />
+  <property name="tools_build" location="dist_all"/>   
+  <property name="source-version" value ="1.6"/>
+  <property name="target-version" value ="1.6"/>  
+    
+  <!-- ========================== tools ======================= -->
+    
+  <property name="removestartuploader" location="removestartuploader"/>
+  <property name="removestartuploader_src" location="${removestartuploader}/src"/>
+
+  <property name="removequeryindex" location="removequeryindex"/>
+  <property name="removequeryindex_src" location="${removequeryindex}/src"/>
+
+  <property name="removebackingsource" location="removebackingsource"/>
+  <property name="removebackingsource_src" location="${removebackingsource}/src"/>
+  
+  <property name="configuremapreduce" location="configuremapreduce"/>
+  <property name="configuremapreduce_src" location="${configuremapreduce}/src"/>
+
+  <property name="getcacheconfiguration" location="getcacheconfiguration"/>
+  <property name="getcacheconfiguration_src" location="${getcacheconfiguration}/src"/>
+
+  <property name="deployjar" location="deployjar"/>
+  <property name="deployjar_src" location="${deployjar}/src"/>
+
+  <property name="configurecache" location="configurecache"/>
+  <property name="configurecache_src" location="${configurecache}/src"/>
+
+  <property name="addstartuploader" location="addstartuploader"/>
+  <property name="addstartuploader_src" location="${addstartuploader}/src"/>
+
+  <property name="addqueryindex" location="addqueryindex"/>
+  <property name="addqueryindex_src" location="${addqueryindex}/src"/>
+
+  <property name="addbackingsource" location="addbackingsource"/>
+  <property name="addbackingsource_src" location="${addbackingsource}/src"/>
+
+  <property name="stress" location="stresstesttool"/>
+  <property name="stress_src" location="${stress}/src"/>
+
+  <property name="stopcache" location="stopcache"/>
+  <property name="stopcache_src" location="${stopcache}/src"/>  
+
+  <property name="startcache" location="startcache"/>
+  <property name="startcache_src" location="${startcache}/src"/>
+
+  <property name="removenode" location="removenode"/>
+  <property name="removenode_src" location="${removenode}/src"/>
+
+  <property name="removecache" location="removecache"/>
+  <property name="removecache_src" location="${removecache}/src"/>
+
+  <property name="listcaches" location="listcaches"/>
+  <property name="listcaches_src" location="${listcaches}/src"/>
+    
+
+  <property name="addtestdata" location="addtestdata"/>
+  <property name="addtestdata_src" location="${addtestdata}/src"/>      
+
+  <property name="addnode" location="addnode"/>
+  <property name="addnode_src" location="${addnode}/src"/>      
+
+  <property name="addclientnode" location="addclientnode"/>
+  <property name="addclientnode_src" location="${addclientnode}/src"/>
+  
+  <property name="removeclientnode" location="removeclientnode"/>
+  <property name="removeclientnode_src" location="${removeclientnode}/src"/>
+  
+  <property name="getcachecount" location="getcachecount"/>
+  <property name="getcachecount_src" location="${getcachecount}/src"/>  
+  
+  <property name="clearcache" location="clearcache"/>
+  <property name="clearcache_src" location="${clearcache}/src"/>  
+  
+  <property name="dumpcache" location="dumpcache"/>
+  <property name="dumpcache_src" location="${dumpcache}/src"/>  
+  
+  <property name="verifylicense" location="verifylicense"/>
+  <property name="verifylicense_src" location="${verifylicense}/src"/>  
+
+  <!-- ============================ jar names ========================== -->
+  <property name="stresstesttooljar" value="stresstesttool.jar"/>
+  <property name="stopcachejar" value="stopcache.jar"/>
+  <property name="startcachejar" value="startcache.jar"/>
+  <property name="removeclientnodejar" value="removeclientnode.jar"/>
+  <property name="removenodejar" value="removenode.jar"/>
+  <property name="removecachejar" value="removecache.jar"/>
+  <property name="listcachesjar" value="listcaches.jar"/>
+  <property name="addtestdatajar" value="addtestdata.jar"/>
+  <property name="addnodejar" value="addnode.jar"/>
+  <property name="addclientnodejar" value="addclientnode.jar"/>
+  <property name="getcachecountjar" value="getcachecount.jar"/>
+  <property name="clearcachejar" value="clearcache.jar"/>
+  <property name="dumpcachejar" value="dumpcache.jar"/>
+  <property name="verifylicensejar" value="verifylicense.jar"/>
+  <property name="removequeryindexjar" value="removequeryindex.jar"/>
+  <property name="removestartuploaderjar" value="removestartuploader.jar"/>
+  <property name="removebackingsourcejar" value="removebackingsource.jar"/>
+  <property name="configuremapreducejar" value="configuremapreduce.jar"/>
+  <property name="getcacheconfigurationjar" value="getcacheconfiguration.jar"/>
+  <property name="deployjarjar" value="deployproviders.jar"/>
+  <property name="configurecachejar" value="createcache.jar"/>
+  <property name="addstartuploaderjar" value="addstartuploader.jar"/>
+  <property name="addqueryindexjar" value="addqueryindex.jar"/>
+  <property name="addbackingsourcejar" value="addbackingsource.jar"/>
+ 
+  <!-- ======================== manifest information ======================== -->    
+  <property name="class_path" value=". ../lib/${runtimejar} ../lib/${commonjar} ../libexec/${socketserverjar} ../lib/${serializationjar}  ../lib/${parserjar} ../libexec/${clusterjar}  ../lib/${clientjar} ../lib/${storagejar} ../lib/${cachejar} ../lib/${managementjar} ../lib/${jmxsnmpjar} ../lib/resources/guava-13.0.1.jar ../lib/resources/guice-3.0.jar ../lib/resources/cache-api-1.0.0.jar ../lib/resources/guice-multibindings-3.0.jar ../lib/resources/javassist.jar ../lib/resources/javax.mail.jre16_1.4.3.jar  ../lib/resources/log4j-1.2.16.jar ../lib/resources/log4jna.jar  ../lib/resources/paranamer-2.3.jar  ../lib/resources/snmp4j-2.1.0.jar ../lib/resources/sqljdbc4.jar  ../lib/resources/sigar.jar ../lib/resources/libsigar-amd64-linux.so  ../libexec/${utiljar} " />
+
+
+  <!-- =========================== tayzgrid tools target =========================== -->
+  
+  <target name="build" depends="tools" >
+    <delete dir= "${tools_build}"/>
+	<mkdir dir= "${tools_build}"/>
+	  <copy todir="${tools_build}" flatten="true">
+		<fileset dir="./">
+			  <include name="**/*.jar"/>
+			  <type type="file"/>
+		</fileset>
+	  </copy>
+	  <antcall target="clean"/>
+	</target>
+	
+ <target name= "clean">
+    <delete includeemptydirs="true">
+        <fileset  dir=".">
+          <include name="**/build/**" />
+		  <include name="**/dist/**" />
+    </fileset>
+  </delete>
+ </target>	
+
+
+
+
+<!-- ======================================== tools ======================================== -->
+  <target name="tools" depends="    
+    removequeryindex,
+    removestartuploader,
+    deployjar,
+    getcacheconfiguration,
+    configurecache,
+    addstartuploader,
+    addqueryindex,
+    addbackingsource,
+    addclientnode,
+    addnode,  
+    addtestdata,
+    listcaches,
+    removebackingsource,
+	configuremapreduce,
+    removecache,
+    removeclientnode,
+    removenode,
+    startcache,
+    stopcache,	
+    stress,
+    clearcache,
+    dumpcache,
+    getcachecount,
+    verifylicense"/>
+
+  <target name="removequeryindex">
+    <mkdir dir="${removequeryindex}/build/META-INF"/>
+    <mkdir dir="${removequeryindex}/build"/>
+    <mkdir dir="${removequeryindex}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${removequeryindex}/build" source="${source-version}"  srcdir="${removequeryindex_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${removequeryindex}/build" destfile="${removequeryindex}/dist/${removequeryindexjar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.Application"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="removestartuploader">
+    <mkdir dir="${removestartuploader}/build/META-INF"/>
+    <mkdir dir="${removestartuploader}/build"/>
+    <mkdir dir="${removestartuploader}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${removestartuploader}/build" source="${source-version}"  srcdir="${removestartuploader_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${removestartuploader}/build" destfile="${removestartuploader}/dist/${removestartuploaderjar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.Application"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="removebackingsource">
+    <mkdir dir="${removebackingsource}/build/meta-inf"/>
+    <mkdir dir="${removebackingsource}/build"/>
+    <mkdir dir="${removebackingsource}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${removebackingsource}/build" source="${source-version}"  srcdir="${removebackingsource_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${removebackingsource}/build" destfile="${removebackingsource}/dist/${removebackingsourcejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.Application"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+   
+ <target name="configuremapreduce">
+    <mkdir dir="${configuremapreduce}/build/META-INF"/>
+    <mkdir dir="${configuremapreduce}/build"/>
+    <mkdir dir="${configuremapreduce}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${configuremapreduce}/build" source="${source-version}"  srcdir="${configuremapreduce_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${configuremapreduce}/build" destfile="${configuremapreduce}/dist/${configuremapreducejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.ConfigureMapReduce"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="getcacheconfiguration">
+    <mkdir dir="${getcacheconfiguration}/build/META-INF"/>
+    <mkdir dir="${getcacheconfiguration}/build"/>
+    <mkdir dir="${getcacheconfiguration}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${getcacheconfiguration}/build" source="${source-version}"  srcdir="${getcacheconfiguration_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${getcacheconfiguration}/build" destfile="${getcacheconfiguration}/dist/${getcacheconfigurationjar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.Application"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="deployjar">
+    <mkdir dir="${deployjar}/build/META-INF"/>
+    <mkdir dir="${deployjar}/build"/>
+    <mkdir dir="${deployjar}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${deployjar}/build" source="${source-version}"  srcdir="${deployjar_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${deployjar}/build" destfile="${deployjar}/dist/${deployjarjar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.Application"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="configurecache">
+    <mkdir dir="${configurecache}/build/META-INF"/>
+    <mkdir dir="${configurecache}/build"/>
+    <mkdir dir="${configurecache}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${configurecache}/build" source="${source-version}"  srcdir="${configurecache_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${configurecache}/build" destfile="${configurecache}/dist/${configurecachejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.CreateCacheTool"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="addstartuploader">
+    <mkdir dir="${addstartuploader}/build/META-INF"/>
+    <mkdir dir="${addstartuploader}/build"/>
+    <mkdir dir="${addstartuploader}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${addstartuploader}/build" source="${source-version}"  srcdir="${addstartuploader_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${addstartuploader}/build" destfile="${addstartuploader}/dist/${addstartuploaderjar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.Application"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="addqueryindex">
+    <mkdir dir="${addqueryindex}/build/META-INF"/>
+    <mkdir dir="${addqueryindex}/build"/>
+    <mkdir dir="${addqueryindex}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${addqueryindex}/build" source="${source-version}"  srcdir="${addqueryindex_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${addqueryindex}/build" destfile="${addqueryindex}/dist/${addqueryindexjar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.Application"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="addbackingsource">
+    <mkdir dir="${addbackingsource}/build/META-INF"/>
+    <mkdir dir="${addbackingsource}/build"/>
+    <mkdir dir="${addbackingsource}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${addbackingsource}/build" source="${source-version}"  srcdir="${addbackingsource_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${addbackingsource}/build" destfile="${addbackingsource}/dist/${addbackingsourcejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.AddBackingSourceTool"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="addnode">
+    <mkdir dir="${addnode}/build/META-INF"/>
+    <mkdir dir="${addnode}/build"/>
+    <mkdir dir="${addnode}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${addnode}/build" source="${source-version}"  srcdir="${addnode_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${addnode}/build" destfile="${addnode}/dist/${addnodejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.AddNode"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="addclientnode">
+
+    <mkdir dir="${addclientnode}/build/META-INF"/>
+    <mkdir dir="${addclientnode}/build"/>
+    <mkdir dir="${addclientnode}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${addclientnode}/build" source="${source-version}"  srcdir="${addclientnode_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${addclientnode}/build" destfile="${addclientnode}/dist/${addclientnodejar}">
+      <manifest>
+        <attribute name="Class-Path" value="${class_path}"/>
+        <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.AddClientNode"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="addtestdata">
+ 
+    <mkdir dir="${addtestdata}/build/META-INF"/>
+    <mkdir dir="${addtestdata}/build"/>
+    <mkdir dir="${addtestdata}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${addtestdata}/build" source="${source-version}"  srcdir="${addtestdata_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${addtestdata}/build" destfile="${addtestdata}/dist/${addtestdatajar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.AddTestData"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="listcaches">
+
+    <mkdir dir="${listcaches}/build/META-INF"/>
+    <mkdir dir="${listcaches}/build"/>
+    <mkdir dir="${listcaches}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${listcaches}/build" source="${source-version}"  srcdir="${listcaches_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${listcaches}/build" destfile="${listcaches}/dist/${listcachesjar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.ListCaches"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="removecache">
+
+    <mkdir dir="${removecache}/build/META-INF"/>
+    <mkdir dir="${removecache}/build"/>
+    <mkdir dir="${removecache}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${removecache}/build" source="${source-version}"  srcdir="${removecache_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${removecache}/build" destfile="${removecache}/dist/${removecachejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.Application"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="removeclientnode">
+
+    <mkdir dir="${removeclientnode}/build/META-INF"/>
+    <mkdir dir="${removeclientnode}/build"/>
+    <mkdir dir="${removeclientnode}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${removeclientnode}/build" source="${source-version}"  srcdir="${removeclientnode_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${removeclientnode}/build" destfile="${removeclientnode}/dist/${removeclientnodejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.RemoveClientNode"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="removenode">
+    <mkdir dir="${removenode}/build/META-INF"/>
+    <mkdir dir="${removenode}/build"/>
+    <mkdir dir="${removenode}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${removenode}/build" source="${source-version}"  srcdir="${removenode_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${removenode}/build" destfile="${removenode}/dist/${removenodejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.RemoveNode"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="startcache">
+      <mkdir dir="${startcache}/build/META-INF"/>
+    <mkdir dir="${startcache}/build"/>
+    <mkdir dir="${startcache}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${startcache}/build" source="${source-version}"  srcdir="${startcache_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${startcache}/build" destfile="${startcache}/dist/${startcachejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.StartCache"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="stopcache">
+    <mkdir dir="${stopcache}/build/META-INF"/>
+    <mkdir dir="${stopcache}/build"/>
+    <mkdir dir="${stopcache}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${stopcache}/build" source="${source-version}"  srcdir="${stopcache_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${stopcache}/build" destfile="${stopcache}/dist/${stopcachejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.StopCache"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="stopservice">
+    <mkdir dir="${stopservice}/build/META-INF"/>
+    <mkdir dir="${stopservice}/build"/>
+    <mkdir dir="${stopservice}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${stopservice}/build" source="${source-version}"  srcdir="${stopservice_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${stopservice}/build" destfile="${stopservice}/dist/${stopservicejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.StopService"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+
+  <target name="stress">
+    <mkdir dir="${stress}/build/META-INF"/>
+    <mkdir dir="${stress}/build"/>
+    <mkdir dir="${stress}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${stress}/build" source="${source-version}"  srcdir="${stress_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${stress}/build" destfile="${stress}/dist/${stresstesttooljar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.stresstesttool"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+  
+  <target name="clearcache">
+    <mkdir dir="${clearcache}/build/META-INF"/>
+    <mkdir dir="${clearcache}/build"/>
+    <mkdir dir="${clearcache}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${clearcache}/build" source="${source-version}"  srcdir="${clearcache_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${clearcache}/build" destfile="${clearcache}/dist/${clearcachejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.ClearCache"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+    
+  <target name="dumpcache">
+    <mkdir dir="${dumpcache}/build/META-INF"/>
+    <mkdir dir="${dumpcache}/build"/>
+    <mkdir dir="${dumpcache}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${dumpcache}/build" source="${source-version}"  srcdir="${dumpcache_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${dumpcache}/build" destfile="${dumpcache}/dist/${dumpcachejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.dumpcache"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+    
+  <target name="getcachecount">
+     <mkdir dir="${getcachecount}/build/META-INF"/>
+    <mkdir dir="${getcachecount}/build"/>
+    <mkdir dir="${getcachecount}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${getcachecount}/build" source="${source-version}"  srcdir="${getcachecount_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${getcachecount}/build" destfile="${getcachecount}/dist/${getcachecountjar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.getcachecount"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+      
+  <target name="verifylicense">
+    <mkdir dir="${verifylicense}/build/META-INF"/>
+    <mkdir dir="${verifylicense}/build"/>
+    <mkdir dir="${verifylicense}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${verifylicense}/build" source="${source-version}"  srcdir="${verifylicense_src}" target="${target-version}">
+	<classpath>	
+        <fileset dir="${src_build}">
+          <include name="**/*.jar"/>
+        </fileset>
+	</classpath>
+    </javac>
+    <jar basedir="${verifylicense}/build" destfile="${verifylicense}/dist/${verifylicensejar}">
+      <manifest>
+       <attribute name="Main-Class" value="com.alachisoft.tayzgrid.tools.verifylicense"/>
+       <attribute name="Class-Path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+</project>
+
+

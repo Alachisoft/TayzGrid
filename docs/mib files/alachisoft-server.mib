@@ -1,0 +1,190 @@
+ALACHISOFT-SERVER-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    enterprises
+                FROM RFC1155-SMI
+	OBJECT-TYPE
+                FROM RFC-1211;
+
+DisplayString ::= OCTET STRING
+
+alachisoft	OBJECT IDENTIFIER ::= {enterprises 12}
+tayzgrid		OBJECT IDENTIFIER ::= {alachisoft 1}
+
+
+server OBJECT IDENTIFIER ::= {tayzgrid 0}
+
+--
+--	Server counters
+--
+
+NodeName OBJECT-TYPE
+	SYNTAX DisplayString
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Name of the server node."
+	::= {server 0}
+
+LoggedEvent OBJECT-TYPE
+	SYNTAX DisplayString
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of requests per second received at server node."
+	::= {server 1}
+
+CachePorts OBJECT-TYPE
+	SYNTAX DisplayString
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Display cache with port."
+	::= {server 7}		
+	
+RequestsPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of requests received (meaning cache commands like add, get, insert, remove etc.) from all clients by this cache server."
+	::= {server 50}
+	
+ResponsesPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of responses received by all clients from the cache server."
+	::= {server 51}
+	
+ClientsBytesSentPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Bytes being sent from cache server to all its clients."
+	::= {server 52}
+	
+ClientBytesRecievedPerSec OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Bytes being received by cache server from all its clients."
+	::= {server 53}
+	
+AverageMicroSecPerCacheOperation OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Average time, in microseconds, taken to complete one cache-operation."
+	::= {server 54}
+	
+
+TotalCpuUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total CPU consumed by JvCache Server process. "
+	::= {server 56}
+
+TotalFreePhysicalMemory OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Available free memory for JvCache Server process. "
+	::= {server 57}
+
+TotalMemoryUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total memory used by JvCache Server process. "
+	::= {server 58}
+
+TayzgridCpuUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"CPU consumed by JvCache process"
+	::= {server 59}
+
+TayzgridAvailableMemory OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Memory available to JvCache process. "
+	::= {server 60}
+
+TayzgridMaxMemory OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Maximum memory occupied by JvCache process."
+	::= {server 61}
+
+TayzgridMemoryUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total memory used by JvCache process. "
+	::= {server 62}
+
+TayzgridNetworkUsage OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Total network usage consumed by JvCache process. "
+	::= {server 63}	
+	
+	BytesReceivePerSec  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of bytes receive per second to other nodes of the cluster."
+	::= {server 38}	
+	
+EventQueueCount  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items in event queue."
+	::= {server 39}	
+	
+GeneralNotificationsQueueSize  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items in event queue."
+	::= {server 40}	
+
+ResponseQueueSize  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items in event queue."
+	::= {server 41}	
+
+ResponseQueueCount  OBJECT-TYPE
+	SYNTAX Integer32
+	ACCESS read-only
+	STATUS mandatory
+	DESCRIPTION
+		"Number of items in event queue."
+	::= {server 42}	
+	
+END

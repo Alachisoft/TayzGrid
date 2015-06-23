@@ -1,0 +1,110 @@
+=============================================================================
+            TayzGrid Hibernate Sample Program Version 1.0			
+=============================================================================
+
+PURPOSE OF THIS SAMPLE 
+=======================  
+This sample program demonstrates the usage of TayzGrid with Hibernate framework.
+
+
+CONVENTIONS
+===========
+For Linux  : $TG_HOME refers to installation path where TayzGrid is 
+             installed.        
+
+For Windows: %TG_HOME% refers to the installation path where TayzGrid is 
+             installed.
+
+             
+PREREQUISITES
+=============
+This sample program requires     
+
+    - TG_HOME environment variable must be set. TG_HOME refers to installation 
+      path where TayzGrid is installed. 
+
+      To set TG_HOME For Linux: 
+
+        - Open shell.
+		- Type "export TG_HOME=/opt/tayzgrid" without quotes and press ENTER key. 
+          Replace /opt/tayzgrid with the actual installation path if you have 
+          installed TayzGrid on non-default location. 
+
+
+      To set TG_HOME For Windows: 
+        - Open Command Prompt.
+        - type 'set TG_HOME="C:\Program Files\TayzGrid\"' without quotes 
+          and press enter. 
+
+    - jdk1.6 or higher
+    - Netbeans v6 or later if you are using NetBeans to build and 
+      run the project.
+
+However any other preferred method can used to compile the source 
+located at $TG_HOME/samples/hibernate/src/
+
+
+Application Configuration
+=========================
+By default this sample application use 'mypartitionedcache' to store the session data. 
+
+So make sure that:
+
+	- cache 'mypartitionedcache' exist in the 'client.conf' located at
+	  '$TG_HOME/config/' with correct server ip address and this 
+	  cache should be started.
+
+
+	- Include all the libraries located at :
+	  -$TG_HOME/lib
+      -$TG_HOME/lib/resources/
+      -$TG_HOME/lib/integrations/tg-hibernate.jar
+
+	- HibernateSample named database should exist in MySQL. Use Sql Scripts located
+      at '$TG_HOME/samples/hibernate/mysql-scripts' to create hibernatesample database
+      in Linux and Windows.
+
+
+Build Application
+=================
+
+To Compile and run via NetBeans:
+
+	- Open the project at the following location '$TG_HOME/samples/hibernate'
+      in the NetBeans environment. 
+	  
+	- Make sure that project references all the libraries located at 
+     '$TG_HOME/lib' and '$TG_HOME/lib/resources/'
+	 
+	- Make sure the project references hibernate framework libraries.
+	
+	- Add the ‘log4j.Properties’ file as described in the Application Configuration 
+      section in the default source package of the project.
+	  
+	- Define correct property of hibernate.connection.url in hibernate.cfg.xml.
+	
+	- Provide correct information in properties of hibernate.connection.username and hibernate.connection.password.
+	
+	- Copy TayzGridHibernate.xml located at '$TG_HOME/samples/hibernate' to '$TG_HOME/config'
+	  
+	- Build the project, it will generate hibernate.jar in '$TG_HOME/samples/hibernate/dist'
+	
+		OR
+	
+To Compile and run via Ant:
+
+	- Make sure $ANT_HOME environment path variable is set.
+	
+    - Start shell (terminal/cmd)
+	
+    - Change directory to $TG_HOME/samples/hibernate
+	
+	- Modify build.xml file located at $TG_HOME/samples/hibernate/ as follows:
+    
+		- Change value of "nbpath" property to the path where hibernate framework libraries exist.
+
+	- Goto $TG_HOME/samples/hibernate/$ in shell(linux) / dos(windows).
+
+	- Run ant
+
+	- This will compile hibernate src and will place hibernate.jar in $TG_HOME/samples/hibernate/dist.

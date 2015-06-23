@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+     <filter>
+        <filter-name>JvCacheSessionProvider</filter-name>
+        <filter-class>com.alachisoft.jvcache.web.sessionstate.JvCacheSessionStoreProvider</filter-class>
+        <init-param>
+            <description>Name of running cache that will be used to persist session state</description>
+            <param-name>cacheName</param-name>
+            <param-value>mycache</param-value>
+        </init-param>
+        <init-param>
+            <param-name>log.props</param-name>
+            <param-value>/WEB-INF/log4j.properties</param-value>
+            <!--
+            If you the log4j properties don't work, try placing the properties file
+            in classes directory under WEB-INF and just write the name of file in param-value.
+            For example:
+            <param-value>log4j.properties</param-value>
+            will expect the file in classes
+            -->
+        </init-param>
+		<init-param>
+            <description>configPath is used to load the jvc-client.conf</description>
+            <param-name>configPath</param-name>
+            <param-value>C:/Program Files/JvCache/config</param-value>
+        </init-param>
+        <init-param>
+            <description>Lock timeout to be used by JvCache locking API</description>
+            <param-name>lockTimeout</param-name>
+            <param-value>1</param-value>
+        </init-param>
+        <init-param>
+            <description>Enables JvCache JavaSession Provider to use session locking.</description>
+            <param-name>enableSessionLocking</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <description>Number of retries in case a session is locked.</description>
+            <param-name>sessionLockingRetry</param-name>
+            <param-value>5</param-value>
+        </init-param>
+        <init-param>
+            <description>Number of milliseconds delay to retry a locked session.</description>
+            <param-name>retryInterval</param-name>
+            <param-value>500</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>JvCacheSessionProvider</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>Welcome</servlet-name>
+        <servlet-class>com.alachisoft.jvcache.web.examples.Welcome</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DebugServlet</servlet-name>
+        <servlet-class>com.alachisoft.jvcache.web.examples.DebugServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Welcome</servlet-name>
+        <url-pattern>/Welcome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DebugServlet</servlet-name>
+        <url-pattern>*.jspx</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

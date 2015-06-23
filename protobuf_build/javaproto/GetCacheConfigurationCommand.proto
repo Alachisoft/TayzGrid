@@ -1,0 +1,6 @@
+
+option java_outer_classname="GetCacheConfigurationCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetCacheConfigurationCommand {
+	optional int64 requestId = 1;
+}

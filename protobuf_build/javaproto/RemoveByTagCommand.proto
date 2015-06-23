@@ -1,0 +1,10 @@
+
+option java_outer_classname="RemoveByTagCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message RemoveByTagCommand 
+{
+	repeated string tags = 1;
+	optional int64 requestId = 2;
+	optional int32 tagComparisonType = 3;
+}

@@ -1,0 +1,40 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+#*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+#ignore thumbnails created by windows
+Thumbs.db
+
+/src/**/build/
+/src/**/dist/
+
+/tools/**/build/
+/tools/**/lib/
+/tools/**/dist/
+
+/samples/**/build/
+/samples/**/lib/
+/samples/**/dist/
+
+*/dist_all/
+/integrations/**/build/
+/integrations/**/lib/
+/integrations/**/dist/
+/src/**/bin/
+/tools/**/bin/
+/tools/tools_jars/
+/build/**/*.class
+/build/**/*.jar
+/resources/integrations/*.jar
+
+/build/tayzgrid/
+

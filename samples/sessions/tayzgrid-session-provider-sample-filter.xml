@@ -1,0 +1,13 @@
+<filter>
+	<filter-name>TayzGridSessionProvider</filter-name>
+	<filter-class>com.alachisoft.tayzgrid.web.session.TayzGridSessionProvider</filter-class>
+	<init-param>
+			<description>configPath is used to load the client.conf</description>
+			<param-name>configPath</param-name>
+			<param-value>%InstallDir%config</param-value>
+	</init-param>
+    <filter-mapping>
+        <filter-name>TayzGridSessionProvider</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</filter>

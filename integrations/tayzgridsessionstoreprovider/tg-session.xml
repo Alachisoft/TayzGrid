@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- session config file is used for TayzGrid session provider configuration
+-->
+  <!--<servelet-session-config>
+	<log log-props="log4j.properties"/>
+	<locking enable-session-locking="true" retries-count="5" retry-interval="500ms" lock-timeout="1ms"/>
+	<cache id="rep"/>
+  </servelet-session-config>-->
+
+  <servelet-session-config>
+	<log log-props="log4j.properties"/>
+	<locking enable-session-locking="true" retries-count="2" retry-interval="500ms" lock-timeout="360000ms" empty-session-when-locked="false"/>
+    <multi-site-cache secondary-connection-recycle-interval="0sec">
+	  <primarycache id="rep" sid-prefix="rep1" />
+	  <secondarycache id="myreplicatedcache" sid-prefix="rep2"/>
+	  <secondarycache id="myreplicatedcache" sid-prefix="rep3" />
+	</multi-site-cache>
+  </servelet-session-config>

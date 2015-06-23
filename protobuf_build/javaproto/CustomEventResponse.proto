@@ -1,0 +1,9 @@
+import "EventId.proto";
+option java_outer_classname="CustomEventResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message CustomEventResponse 
+{
+	optional bytes key = 1;
+	optional bytes value = 2;
+	optional EventId eventId = 3;
+}

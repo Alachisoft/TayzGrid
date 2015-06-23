@@ -1,0 +1,10 @@
+import "EnumerationPointer.proto";
+
+
+option java_outer_classname="GetNextChunkCommandProtocol";
+
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetNextChunkCommand {
+	optional int64 requestId = 1;
+	optional EnumerationPointer enumerationPointer = 2;
+}

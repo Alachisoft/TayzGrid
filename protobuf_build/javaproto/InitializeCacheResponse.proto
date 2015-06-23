@@ -1,0 +1,15 @@
+import "ShutDownServerInfo.proto";
+
+option java_outer_classname="InitializeCacheResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message InitializeCacheResponse {
+	optional string cacheType = 1;
+	optional string targetCacheUniqueID = 2;
+	optional bool isPersistenceEnabled = 3;
+	optional int32 persistenceInterval = 4;
+	optional bool isShutDownProcessEnabled = 5;
+	repeated ShutDownServerInfo shutDownServerInfo = 6;
+	optional int32 expirationType = 7;
+	optional int64 duration = 8;
+	optional int32 expirationUnit = 9;
+}

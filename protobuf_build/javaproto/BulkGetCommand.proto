@@ -1,0 +1,12 @@
+
+option java_outer_classname="BulkGetCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message BulkGetCommand {
+	repeated bytes keys = 1;
+	optional int64 requestId = 2;
+	optional int32 flag = 3;
+	optional string providerName = 4;
+	optional bool isAsync = 5 [default = false];
+	optional sint32 jCacheListenerId = 6 [default = -1];
+	optional bool replaceExistingValues = 7 [default = false];
+}

@@ -1,0 +1,6 @@
+
+option java_outer_classname="CountCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message CountCommand {
+	optional int64 requestId = 1;
+}

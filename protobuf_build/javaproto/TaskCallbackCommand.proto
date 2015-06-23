@@ -1,0 +1,7 @@
+
+option java_outer_classname="TaskCallbackCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message TaskCallbackCommand{
+	optional int64 callbackId = 1;
+	optional string taskId = 2;
+}

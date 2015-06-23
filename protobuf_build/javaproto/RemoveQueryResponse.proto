@@ -1,0 +1,7 @@
+import "KeyValuePackageResponse.proto";
+
+option java_outer_classname="RemoveQueryResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message RemoveQueryResponse {
+	optional int32 removedKeyCount = 1;
+}

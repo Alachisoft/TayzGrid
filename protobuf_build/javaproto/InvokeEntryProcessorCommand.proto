@@ -1,0 +1,10 @@
+option java_outer_classname="InvokeEntryProcessorProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message InvokeEntryProcessorCommand {	
+	repeated bytes keys = 1;
+	optional bytes entryprocessor=2;
+	repeated bytes arguments = 3; 		
+	optional string defaultReadThru = 4;
+	optional string defaultWriteThru = 5;
+}

@@ -1,0 +1,7 @@
+
+option java_outer_classname="GetOptimalServerResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetOptimalServerResponse {
+	optional string server = 1;
+	optional int32 port = 2;
+}

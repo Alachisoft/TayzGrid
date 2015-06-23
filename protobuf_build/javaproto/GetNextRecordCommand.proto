@@ -1,0 +1,12 @@
+import "TaskEnumeratorPointer.proto";
+
+option java_package = "com.alachisoft.tayzgrid.common.protobuf";
+option java_outer_classname="GetNextRecordCommandProtocol";
+
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message GetNextRecordCommand 
+{
+	optional TaskEnumeratorPointer pointer = 1;
+	optional string intendedRecipient = 2;
+}

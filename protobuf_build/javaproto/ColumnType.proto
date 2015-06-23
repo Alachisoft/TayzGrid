@@ -1,0 +1,8 @@
+option java_outer_classname="ColumnTypeProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+enum ColumnType 
+{
+		ATTRIBUTE_COLUMN = 0;
+        AGGREGATERESULT_COLUMN = 1; 	 
+}

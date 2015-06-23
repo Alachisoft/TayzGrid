@@ -1,0 +1,9 @@
+option java_outer_classname="BulkDeleteCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message BulkDeleteCommand {
+	repeated bytes keys = 1;
+	optional int64 requestId = 2;
+	optional int32 flag = 3;
+	optional sint32 datasourceItemRemovedCallbackId = 4;
+	optional string providerName = 5;
+}

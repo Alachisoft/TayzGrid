@@ -1,0 +1,7 @@
+
+option java_outer_classname="ValueWithTypeProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message ValueWithType {
+   optional string value = 1;
+   optional string type = 2;
+}

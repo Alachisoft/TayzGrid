@@ -1,0 +1,7 @@
+
+option java_outer_classname="QueryInfoProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message QueryInfo {	
+	optional int32 handleId = 1;
+	repeated string attributes = 2;
+}

@@ -1,0 +1,6 @@
+
+option java_outer_classname="CountResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message CountResponse {
+	optional int64 count = 1;
+}

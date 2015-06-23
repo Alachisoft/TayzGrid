@@ -1,0 +1,6 @@
+
+option java_outer_classname="AddAttributeResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message AddAttributeResponse {
+	optional bool success = 1;
+}

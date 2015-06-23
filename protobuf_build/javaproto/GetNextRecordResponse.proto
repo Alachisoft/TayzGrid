@@ -1,0 +1,11 @@
+
+import "TaskEnumeratorResult.proto";
+
+option java_outer_classname="GetNextRecordResponseProtocol";
+
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message GetNextRecordResponse
+{
+	optional TaskEnumeratorResult taskEnumeratorResult = 1;
+}

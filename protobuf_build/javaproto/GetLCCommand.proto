@@ -1,0 +1,8 @@
+
+option java_outer_classname="GetLCCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetLCCommand {
+	optional int64 requestId = 1;
+	optional int32 opCode = 2;
+	optional int32 editionId = 3;
+}

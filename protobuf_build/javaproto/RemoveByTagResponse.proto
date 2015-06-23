@@ -1,0 +1,5 @@
+
+option java_outer_classname="RemoveByTagResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message RemoveByTagResponse {
+}

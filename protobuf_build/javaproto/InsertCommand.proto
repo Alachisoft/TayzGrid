@@ -1,0 +1,40 @@
+import "QueryInfo.proto";
+import "TagInfo.proto";
+import "NamedTagInfo.proto";
+import "ObjectQueryInfo.proto";
+
+option java_outer_classname="InsertCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message InsertCommand {
+	optional bytes key = 1;
+	optional int64 requestId = 2;
+	optional sint32 updateCallbackId = 3;
+	optional sint32 removeCallbackId = 4;
+	optional sint32 datasourceUpdatedCallbackId = 5;
+	optional bool isAsync = 6;
+	optional int32 priority = 7;
+	optional int64 absExpiration = 8;
+	optional int64 sldExpiration = 9;
+	optional bool isResync = 10;
+	optional string group = 11;
+	optional string subGroup = 12;
+	optional int32 flag = 13;
+	optional string providerName = 14;
+	optional string resyncProviderName = 15;	
+	optional string lockId = 16;
+	optional int32 lockAccessType = 17;
+	optional uint64 itemVersion = 18;
+	optional QueryInfo queryInfo = 19;
+	optional TagInfo tagInfo = 20;	
+	repeated bytes data = 21;
+	optional NamedTagInfo namedTagInfo = 22;
+	optional ObjectQueryInfo objectQueryInfo = 23;		
+	repeated bytes objectQueryInfoEncrypted = 24; 
+	optional sint32 updateDataFilter = 25 [default = -1];
+	optional sint32 removeDataFilter = 26 [default = -1];
+	optional bool isReplace = 27;
+	optional bool returnExisting = 28;
+	optional bool compareOld = 29;
+	optional int32 oldValueFlag = 30;
+	repeated bytes oldValue = 31;
+}

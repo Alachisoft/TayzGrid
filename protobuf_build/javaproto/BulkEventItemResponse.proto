@@ -1,0 +1,46 @@
+import "ItemAddedEventResponse.proto";
+import "ItemRemovedEventResponse.proto";
+import "ItemUpdatedEventResponse.proto";
+import "RaiseCustomEventResponse.proto";
+import "AsyncOperationCompletedCallbackResponse.proto";
+import "DSUpdatedCallbackResponse.proto";
+import "CustomEventResponse.proto";
+import "ItemRemoveCallbackResponse.proto";
+import "ItemUpdatedCallbackResponse.proto";
+import "CacheClearedEventResponse.proto";
+import "CacheStoppedEventResponse.proto";
+import "TaskCallbackResponse.proto";
+
+option java_outer_classname="BulkEventItemResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message BulkEventItemResponse {
+enum EventType 
+	{
+		ITEM_ADDED_EVENT = 1;
+		ITEM_UPDATED_EVENT = 2;
+		ITEM_REMOVED_EVENT = 3;
+		RAISE_CUSTOM_EVENT = 4;
+		ASYNC_OP_COMPLETED_EVENT = 5;
+		ITEM_REMOVED_CALLBACK = 6;
+		ITEM_UPDATED_CALLBACK = 7;
+		DS_UPDATED_CALLBACK = 8;
+		CACHE_CLEARED_EVENT = 9;
+		CACHE_STOPPED_EVENT = 10;
+		MAP_REDUCE_TASK_CALLBACK = 11;
+	}
+
+	optional EventType eventType = 1;
+	optional ItemRemovedEventResponse itemRemovedEvent = 2;
+	optional ItemUpdatedEventResponse itemUpdatedEvent = 3;
+	optional ItemAddedEventResponse itemAddedEvent = 4;
+	optional AsyncOperationCompletedCallbackResponse asyncOperationCompletedCallback = 5;
+	optional ItemRemoveCallbackResponse itemRemoveCallback = 6;
+	optional DSUpdatedCallbackResponse DSUpdatedCallback = 7;
+	optional CustomEventResponse CustomEvent = 8;
+	optional ItemUpdatedCallbackResponse ItemUpdatedCallback = 9;
+	optional CacheClearedEventResponse cacheClearedEvent = 10;
+	optional CacheStoppedEventResponse cacheStoppedEvent = 11;
+	optional TaskCallbackResponse taskCallback = 12;
+
+}

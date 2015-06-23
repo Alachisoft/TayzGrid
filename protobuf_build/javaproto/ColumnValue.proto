@@ -1,0 +1,10 @@
+import "AverageResult.proto";
+
+option java_outer_classname="ColumnValueProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message ColumnValue
+{
+	optional string stringValue = 1;
+	optional AverageResult avgResult = 2;
+}

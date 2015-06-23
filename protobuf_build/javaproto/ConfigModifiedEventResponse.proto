@@ -1,0 +1,7 @@
+
+option java_outer_classname="ConfigModifiedEventResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message ConfigModifiedEventResponse 
+{
+	optional string hotConfig = 1;
+}

@@ -1,0 +1,7 @@
+
+option java_outer_classname="GetStateTransferInfoCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetStateTransferInfoCommand 
+{
+	optional int64 requestId = 1;
+}

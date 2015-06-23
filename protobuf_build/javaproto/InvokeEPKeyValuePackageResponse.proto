@@ -1,0 +1,6 @@
+option java_outer_classname="InvokeEPKeyValuePackageResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message InvokeEPKeyValuePackageResponse {
+	repeated bytes keys = 1;
+	repeated bytes values = 2;	
+}

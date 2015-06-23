@@ -1,0 +1,21 @@
+import "KeyValuePackageResponse.proto";
+import "KeyValuePair.proto";
+import "QueryType.proto";
+import "DictionaryItem.proto";
+import "AggregateFunctionType.proto";
+import "RecordSet.proto";
+
+option java_outer_classname="QueryResultSetProtocol";
+
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message QueryResultSet {
+	repeated bytes searchKeyResults = 1;
+	optional KeyValuePackageResponse searchKeyEnteriesResult = 2;
+	optional DictionaryItem aggregateFunctionResult = 3;
+	optional QueryType queryType = 4 [default = SEARCH_KEYS];
+	optional AggregateFunctionType aggregateFunctionType = 5 [default = NOTAPPLICABLE];
+	optional string CQUniqueId = 6;
+	optional RecordSet groupByAggregateFunctionResult = 7;
+	
+}

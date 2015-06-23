@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <project name="integration-custom-build" default="integrations" basedir=".">
+	  <description>builds tayzgrid integrations</description>
+	  
+	 <property name="src_build" location="../src/dist_all" />
+	  <property name="bulid" location="./dist_all" />
+	  <property name="resource" location="../resources" />
+	  <property name="integration-resource" location="${resource}/integrations" />
+	  <property name="source-version" value ="1.6"/>
+	  <property name="target-version" value ="1.6"/>
+	  <property name="gwhalin-source-version" value ="1.7"/>
+	  <property name="gwhalin-target-version" value ="1.7"/>
+	  
+	  
+	  <property name="tayzgridsessionstore" location= "./tayzgridsessionstoreprovider"/>
+	  <property name="tayzgridsessionstore-src" location= "${tayzgridsessionstore}/src"/>
+	  
+	  <property name="hibernate" location="./hibernate" />
+	  <property name="hibernate-src" location="${hibernate}/src" />
+	  <property name="hibernate3.5" location="./hibernate-3.5" />
+	  <property name="hibernate3.5-src" location="${hibernate3.5}/src" />
+	  <property name="spring" location="./spring" />
+	  <property name="spring-src" location="${spring}/src"/>
+	  
+	  <property name="memcachedgateway" location="./memcached/gateway" />
+	  <property name="memcachedclient" location="./memcached/clients" />
+	 
+	   <property name="memcached_gwhalin" location="${memcachedclient}/gwhalin"/>
+	  <property name="memcached_gwhalin_src" location="${memcached_gwhalin}/src"/>
+	  
+	  <property name="memcached_spy" location="${memcachedclient}/spymemcached"/>
+	  <property name="memcached_spy_src" location="${memcached_spy}/src"/>
+	 
+      
+	  <property name="memcached_gateway" location="${memcachedgateway}/tg-memcached-gateway"/>
+	  <property name="memcached_gateway_src" location="${memcached_gateway}/src"/>
+	  
+	  <property name="memcached_provider" location="${memcachedgateway}/tg-memcached-provider"/>
+	  <property name="memcached_provider_src" location="${memcached_provider}/src"/>
+	  
+	  <property name="memcached_daemon" location="${memcachedgateway}/memcachedgatewayservice"/>
+	  <property name="daemon_src" location="${memcached_daemon}/src"/>
+	  
+	  
+	  <property name="servicejar" value="tgmemcached.jar"/>
+	  <property name="providerjar" value="tg-memcacheprovider.jar" />
+	  <property name="gatewayjar" value="tg-memcachegateway.jar" />
+	  <property name="hibernatejar" value="tg-hibernate.jar"/>
+	  <property name="hibernate_3.5jar" value="tg-hibernate3.5.jar"/>
+      <property name="springjar" value="tg-spring.jar"/> 
+	  <property name="sessionproviderjar" value="tg-sessionprovider.jar"/>
+	  <property name="gwhalinjar" value="gwhalinmemcached.jar"/>
+	  <property name="spymemcachedjar" value="spymemcached.jar"/>
+
+	  
+ <!-- ======================================== manifest information ========================================= -->
+	  <property name="main_class" value="memcachedgatewayservice.MemcachedGatewayService" />  
+	  <property name="class_path" value=". ./${gatewayjar} ../../lib/integrations/${providerjar} ../../lib/${runtimejar} ../../lib/${commonjar}  ../../lib/${socketserverjar} ../../lib/${serializationjar}  ../../lib/${parserjar}  ../../lib/${clientjar} ../../lib/${storagejar} ../../lib/${cachejar} ../../lib/${managementjar} ../../lib/${jmxsnmpjar} ../../lib/resources/guava-13.0.1.jar ../../lib/resources/guice-3.0.jar ../../lib/resources/guice-multibindings-3.0.jar ../../lib/resources/javassist.jar ../../lib/resources/javax.mail.jre16_1.4.3.jar ../../lib/resources/jena-2.5.4.jar ../../lib/resources/jna.jar ../../lib/resources/log4j-1.2.16.jar ../../lib/resources/log4jna.jar  ../../lib/resources/ojdbc6.jar ../../lib/resources/paranamer-2.3.jar ../../lib/resources/platform.jar ../../lib/resources/snmp4j-2.1.0.jar ../../lib/resources/sqljdbc4.jar ../../lib/resources/sqljdbc4.jar ../../lib/resources/winrun4j.jar ../../lib/resources/sigar.jar ../../lib/resources/sigar/libsigar-amd64-linux.so " />
+ 
+ <!-- =============================================== integrations  ================================================ -->
+	
+	<target depends= "clean,memcached,hibernate,hibernate3.5,spring,tayzgridsessionstore" name ="integrations">
+	<delete dir= "${bulid}"/>
+	<mkdir dir= "${bulid}"/>
+	  <copy todir="${bulid}" flatten="true">
+		<fileset dir="./">
+			  <include name="**/*.jar"/>
+			  <type type="file"/>
+		</fileset>
+	  </copy>
+	  <antcall target="clean"/>
+	</target>
+	
+ <target name= "clean">
+    <delete includeemptydirs="true">
+        <fileset  dir=".">
+          <include name="**/build/**" />
+		  <include name="**/dist/**" />
+    </fileset>
+  </delete>
+ </target>
+
+	
+	
+<!-- ======================================  memcached ================================================= -->
+	<target depends="provider,gateway,spymencached,gwhalin" name="memcached">
+		<mkdir dir="${memcached_daemon}/build"/>
+		<mkdir dir="${memcached_daemon}/build/meta-inf"/>
+		<mkdir dir="${memcached_daemon}/dist"/>
+		<javac debug="on" debuglevel="lines,vars,source" destdir="${memcached_daemon}/build" source="${source-version}" srcdir="${daemon_src}" target="${target-version}">
+		 <classpath>
+			<fileset dir="${src_build}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+				<fileset dir="${memcached_provider}/dist">
+			  <include name="**/*.jar"/>
+			</fileset>
+				<fileset dir="${memcached_gateway}/dist">
+			  <include name="**/*.jar"/>
+			</fileset>
+		  </classpath>
+		</javac>
+		<jar basedir="${memcached_daemon}/build" destfile="${memcached_daemon}/dist/${servicejar}">
+		  <manifest>
+		   <attribute name="main-class" value="${main_class}"/>
+		   <attribute name="class-path" value="${class_path}"/>
+		 </manifest>
+		 </jar>
+	  </target>
+	  
+<!-- ======================================  memcached provider ======================================== -->
+	<target name="provider">
+		<mkdir dir="${memcached_provider}/build"/>
+		<mkdir dir="${memcached_provider}/build/meta-inf"/>
+		<mkdir dir="${memcached_provider}/dist"/>
+		<javac debug="on" debuglevel="lines,vars,source" destdir="${memcached_provider}/build" source="${source-version}" srcdir="${memcached_provider_src}" target="${target-version}">
+		  <classpath>
+		<fileset dir="${src_build}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+		
+		  </classpath>
+		</javac>
+		<jar basedir="${memcached_provider}/build" destfile="${memcached_provider}/dist/${providerjar}">
+		  <manifest>
+		 </manifest>
+		 </jar>
+	  </target>
+
+<!-- ======================================== memcached gateway ========================================== -->
+	<target name="gateway">
+		<mkdir dir="${memcached_gateway}/build"/>
+		<mkdir dir="${memcached_gateway}/build/meta-inf"/>
+		<mkdir dir="${memcached_gateway}/dist"/>
+		<javac debug="on" debuglevel="lines,vars,source" destdir="${memcached_gateway}/build" source="${source-version}" srcdir="${memcached_gateway_src}" target="${target-version}">
+		  <classpath>
+			<fileset dir="${src_build}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${memcached_provider}/dist">
+			  <include name="**/*.jar"/>
+			</fileset>
+		
+		  </classpath>
+		</javac>
+		<jar basedir="${memcached_gateway}/build" destfile="${memcached_gateway}/dist/${gatewayjar}">
+		  <manifest>
+		 </manifest>
+		 </jar>
+	  </target>
+	  
+<!-- ======================================  memcached client gwhalin ======================================== -->
+	<target name="gwhalin">
+		<mkdir dir="${memcached_gwhalin}/build"/>
+		<mkdir dir="${memcached_gwhalin}/build/meta-inf"/>
+		<mkdir dir="${memcached_gwhalin}/dist"/>
+		<javac debug="on" debuglevel="lines,vars,source" destdir="${memcached_gwhalin}/build" source="${gwhalin-source-version}" srcdir="${memcached_gwhalin_src}" target="${gwhalin-target-version}">
+		  <classpath>
+		<fileset dir="${src_build}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${memcached_provider}/dist">
+			  <include name="**/*.jar"/>
+			</fileset>
+		 </classpath>
+		</javac>
+		<jar basedir="${memcached_gwhalin}/build" destfile="${memcached_gwhalin}/dist/${gwhalinjar}">
+		  <manifest>
+		 </manifest>
+		 </jar>
+	  </target>
+
+<!-- ======================================  memcached client spy ======================================== -->
+	<target name="spymencached">
+		<mkdir dir="${memcached_spy}/build"/>
+		<mkdir dir="${memcached_spy}/build/meta-inf"/>
+		<mkdir dir="${memcached_spy}/dist"/>
+		<javac debug="on" debuglevel="lines,vars,source" destdir="${memcached_spy}/build" source="${source-version}" srcdir="${memcached_spy_src}" target="${target-version}">
+		  <classpath>
+		<fileset dir="${src_build}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${memcached_provider}/dist">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${integration-resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+		  </classpath>
+		</javac>
+		<jar basedir="${memcached_spy}/build" destfile="${memcached_spy}/dist/${spymemcachedjar}">
+		  <manifest>
+		 </manifest>
+		 </jar>
+	  </target>
+
+<!-- ========================================== hibernate ================================================= -->
+	<target name="hibernate">
+		<mkdir dir="${hibernate}/build"/>
+		<mkdir dir="${hibernate}/build/meta-inf"/>
+		<mkdir dir="${hibernate}/dist"/>
+		<javac debug="on" debuglevel="lines,vars,source" destdir="${hibernate}/build" source="${source-version}" srcdir="${hibernate-src}" target="${target-version}">
+		  <classpath>
+		<fileset dir="${src_build}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${integration-resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+		  </classpath>
+		</javac>
+		<jar basedir="${hibernate}/build" destfile="${hibernate}/dist/${hibernatejar}">
+		  <manifest>
+		 </manifest>
+		 </jar>
+	  </target>
+	 
+<!-- ========================================== hibernate-3.5 ================================================= -->
+	<target name="hibernate3.5">
+		<mkdir dir="${hibernate3.5}/build"/>
+		<mkdir dir="${hibernate3.5}/build/meta-inf"/>
+		<mkdir dir="${hibernate3.5}/dist"/>
+		<javac debug="on" debuglevel="lines,vars,source" destdir="${hibernate3.5}/build" source="${source-version}" srcdir="${hibernate3.5-src}"  target="${target-version}">
+		  <classpath>
+		<fileset dir="${src_build}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${integration-resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+		  </classpath>
+		</javac>
+		<jar basedir="${hibernate3.5}/build" destfile="${hibernate3.5}/dist/${hibernate_3.5jar}">
+		  <manifest>
+		 </manifest>
+		 </jar>
+	  </target>
+  	 
+<!-- ========================================== spring ================================================= -->
+	<target name="spring">
+		<mkdir dir="${spring}/build"/>
+		<mkdir dir="${spring}/build/meta-inf"/>
+		<mkdir dir="${spring}/dist"/>
+		<javac debug="on" debuglevel="lines,vars,source" destdir="${spring}/build" source="${source-version}" srcdir="${spring-src}" target="${target-version}">
+		  <classpath>
+		<fileset dir="${src_build}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+				<fileset dir="${integration-resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+		  </classpath>
+		</javac>
+		<jar basedir="${spring}/build" destfile="${spring}/dist/${springjar}">
+		  <manifest>
+		 </manifest>
+		 </jar>
+	  </target>
+  
+<!-- ========================================== session store provider ================================================= -->
+	<target name="tayzgridsessionstore"  description="compile the source code.">
+		<mkdir dir="${tayzgridsessionstore}/dist"/>
+		<mkdir dir="${tayzgridsessionstore}/build"/>
+		<javac srcdir="${tayzgridsessionstore-src}" destdir="${tayzgridsessionstore}/build">
+			 <classpath>
+		<fileset dir="${src_build}">
+			  <include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+				<fileset dir="${integration-resource}">
+			  <include name="**/*.jar"/>
+			</fileset>
+		  </classpath>
+		</javac>
+		<jar basedir="${tayzgridsessionstore}/build" destfile="${tayzgridsessionstore}/dist/${sessionproviderjar}">
+		  <manifest>
+		 </manifest>
+		 </jar>
+	</target>
+	
+	 </project>

@@ -1,0 +1,8 @@
+
+option java_outer_classname="LockVerifyCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message LockVerifyCommand 
+{
+	optional bytes key = 1;
+	optional int64 requestId = 2;
+}

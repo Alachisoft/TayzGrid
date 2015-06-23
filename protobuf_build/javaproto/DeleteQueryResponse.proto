@@ -1,0 +1,4 @@
+option java_outer_classname="DeleteQueryResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message DeleteQueryResponse {
+}

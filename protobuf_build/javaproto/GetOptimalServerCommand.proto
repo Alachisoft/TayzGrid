@@ -1,0 +1,9 @@
+
+option java_outer_classname="GetOptimalServerCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetOptimalServerCommand {
+	optional int64 requestId = 1;
+	optional string cacheId = 2;
+	optional bool isDotnetClient = 3 [default=true];
+
+}

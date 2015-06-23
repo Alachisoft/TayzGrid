@@ -1,0 +1,11 @@
+import "Exception.proto";
+
+option java_outer_classname="DSUpdatedCallbackResultProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message DSUpdatedCallbackResult 
+{
+	optional bytes key = 1;
+	optional Exception exception = 2;
+	optional bool success = 3;
+}

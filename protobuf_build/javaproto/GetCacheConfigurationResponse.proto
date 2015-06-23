@@ -1,0 +1,8 @@
+
+option java_outer_classname="GetCacheConfigurationResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetCacheConfigurationResponse {
+	optional bool isReadThru = 1 [default = false];
+	optional bool isWriteThru = 2 [default = false];
+	optional bool isStasticsEnabled = 3 [default = true];
+}

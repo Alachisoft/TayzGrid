@@ -1,0 +1,10 @@
+import "KeyValuePackageResponse.proto";
+import "QueryResultSet.proto";
+
+
+option java_outer_classname="SearchEntriesResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message SearchEntriesResponse {
+	optional KeyValuePackageResponse keyValuePackage = 1;
+	optional QueryResultSet queryResultSet = 2;
+}

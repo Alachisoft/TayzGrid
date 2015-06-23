@@ -1,0 +1,10 @@
+option java_outer_classname="QueryTypeProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+enum QueryType 
+{
+		SEARCH_KEYS = 0;
+        SEARCH_ENTRIES = 1;
+        AGGREGATE_FUNCTIONS = 2;
+		GROUPBY_AGGREGATE_FUNCTIONS = 3;
+}

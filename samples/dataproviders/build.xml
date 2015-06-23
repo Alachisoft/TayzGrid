@@ -1,0 +1,46 @@
+<?xml version="1.0"?> 
+<project name="dataproviders" default="buildsample" basedir=".">
+	<description>
+		This ant script buils basicoperations sample source.
+	</description>
+
+	<property name="lib" location="../../lib/*"/>
+	<property name="resources" location="../../lib/resources/*"/>
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist" location="dist"/>
+	<property name="jarname" value="dataproviders.jar"/>
+	<property name="main.class" value="com.alachisoft.tayzgrid.samples.DataProviders"/>	
+	<property name="jar.classpath" value="${jar.classpath}"/>
+	<target name="buildsample">
+		<delete dir="${build}"/>
+		<delete dir="${dist}"/>
+
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${build}"/>
+
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath>
+                	<fileset dir="../../lib">
+                    		<include name="*.jar"/>
+                	</fileset>
+					<fileset dir="../data/dist">
+                    	<include name="*.jar"/>
+                	</fileset>
+                	<fileset dir="../../lib/resources">
+                    		<include name="*.jar"/>
+                	</fileset>
+
+  			</classpath>
+		</javac>
+		<jar destfile="${dist}/${jarname}" basedir="${build}">
+			<manifest>
+    			<attribute name="Main-Class" value="${main.class}"/>
+    			<attribute name="Class-Path" value=". ../../../lib/tg-runtime.jar ../../data/dist/data.jar ../../../lib/resources/cache-api-1.0.0.jar ../../../lib/tg-common.jar ../../../lib/tg-serialization.jar ../../../lib/tg-security.jar ../../../lib/tg-parser.jar ../../../lib/tg-license.jar ../../../lib/tg-client.jar ../../../lib/tg-storage.jar ../../../lib/tg-cache.jar ../../../lib/tg-management.jar ../../../lib/tg-jmxsnmp.jar ../../../lib/resources/guava-13.0.1.jar ../../../lib/resources/guice-3.0.jar ../../../lib/resources/guice-multibindings-3.0.jar ../../../lib/resources/javassist.jar ../../../lib/resources/jena-2.5.4.jar ../../../lib/resources/jna.jar ../../../lib/resources/log4j-1.2.16.jar ../../../lib/resources/log4jna.jar  ../../../lib/resources/paranamer-2.3.jar ../../../lib/resources/platform.jar ../../../lib/resources/snmp4j-2.1.0.jar ../../../lib/resources/sigar/sigar.jar ../../../lib/resources/sigar/libsigar-amd64-linux.so ../../../lib/resources/sigar/sigar-amd64-winnt.dll "/>
+			</manifest>    			
+		</jar>
+
+		<delete dir="${build}"/>
+	</target>
+
+</project>

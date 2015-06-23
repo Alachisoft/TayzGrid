@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <project name="tayzgrid-custom-build" default="source_build" basedir=".">
+  <description>builds tayzgrid source </description>  
+  
+  <property name="resources" location="../resources" />
+  <property name="src_build" location="dist_all"/>   
+  <property name="source-version" value ="1.6"/>
+  <property name="target-version" value ="1.6"/>  
+  
+  
+  <property name="runtime" location="tgruntime"/> 
+  <property name="runtime_src" location="${runtime}/src"/>
+    
+  <property name="serialization" location="tgserialization"/> 
+  <property name="serialization_src" location="${serialization}/src"/>
+  
+  <property name="common" location="tgcommon"/> 
+  <property name="common_src" location="${common}/src"/>
+  
+  <property name="parser" location="tgparser"/> 
+  <property name="parser_src" location="${parser}/src"/>
+  
+  <property name="cluster" location="tgcluster"/> 
+  <property name="cluster_src" location="${cluster}/src"/>
+  
+    
+  <property name="storage" location="tgstorage"/> 
+  <property name="storage_src" location="${storage}/src"/>
+  
+  <property name="cache" location="tgcache"/> 
+  <property name="cache_src" location="${cache}/src"/>
+  
+  <property name="socketserver" location="tgsocketserver"/> 
+  <property name="socketserver_src" location="${socketserver}/src"/>
+  
+  <property name="management" location="tgmanagement"/> 
+  <property name="management_src" location="${management}/src"/>
+  
+  <property name="client" location="tgclient"/> 
+  <property name="client_src" location="${client}/src"/>
+    
+  <property name="jmxsnmp" location="jmxsnmp"/> 
+  <property name="jmxsnmp_src" location="${jmxsnmp}/src"/>
+
+  <property name="daemon" location="tayzgridservice"/>
+  <property name="daemon_src" location="${daemon}/src"/>
+
+  <property name="util" location="tgutil"/>
+  <property name="util_src" location="${util}/src"/>   
+
+  <!-- ============================ jar names ========================== -->
+
+  <property name="cachejar" value="tg-cache.jar"/>
+  <property name="runtimejar" value="tg-runtime.jar"/>
+  <property name="serializationjar" value="tg-serialization.jar"/>
+  <property name="commonjar" value="tg-common.jar"/>
+  <property name="parserjar" value="tg-parser.jar"/>
+  <property name="clusterjar" value="tg-cluster.jar"/>
+  <property name="storagejar" value="tg-storage.jar"/>
+  <property name="socketserverjar" value="tg-socketserver.jar"/>
+  <property name="clientjar" value="tg-client.jar"/>
+  <property name="jmxsnmpjar" value="tg-jmxsnmp.jar"/>
+  <property name="managementjar" value="tg-management.jar"/>
+  <property name="servicejar" value="tayzgridd.jar"/>
+  <property name="utiljar" value="tg-util.jar" />
+
+  <!-- ======================== manifest information ======================== -->
+  
+  <property name="main_class_host" value="com.alachisoft.tayzgrid.cachehost.cacheseparatehost" /> 
+  <property name="class_path_service" value=". ${socketserverjar} ${clusterjar}  ${utiljar} ../lib/${runtimejar} ../lib/${commonjar} ../lib/${serializationjar}  ../lib/${parserjar} ../lib/${clientjar} ../lib/${storagejar}  ../lib/${cachejar} ../lib/${managementjar} ../lib/${jmxsnmpjar} ../lib/resources/guava-13.0.1.jar ../lib/resources/guice-3.0.jar ../lib/resources/cache-api-1.0.0.jar ../lib/resources/guice-multibindings-3.0.jar ../lib/resources/javassist.jar ../lib/resources/javax.mail.jre16_1.4.3.jar ../lib/resources/jena-2.5.4.jar ../lib/resources/jna.jar ../lib/resources/log4j-1.2.16.jar ../lib/resources/log4jna.jar  ../lib/resources/ojdbc6.jar ../lib/resources/paranamer-2.3.jar ../lib/resources/platform.jar ../lib/resources/snmp4j-2.1.0.jar ../lib/resources/sqljdbc4.jar ../lib/resources/winrun4j.jar ../lib/resources/sigar.jar ../lib/resources/libsigar-amd64-linux.so " />
+  <property name="class_path" value=". ../lib/${runtimejar} ../lib/${commonjar} ../libexec/${socketserverjar} ../lib/${serializationjar}  ../lib/${parserjar} ../libexec/${clusterjar}  ../lib/${clientjar} ../lib/${storagejar} ../lib/${cachejar} ../lib/${managementjar} ../lib/${jmxsnmpjar} ../lib/resources/guava-13.0.1.jar ../lib/resources/guice-3.0.jar ../lib/resources/cache-api-1.0.0.jar ../lib/resources/guice-multibindings-3.0.jar ../lib/resources/javassist.jar ../lib/resources/javax.mail.jre16_1.4.3.jar ../lib/resources/jena-2.5.4.jar ../lib/resources/jna.jar ../lib/resources/log4j-1.2.16.jar ../lib/resources/log4jna.jar ../ ../lib/resources/ojdbc6.jar ../lib/resources/paranamer-2.3.jar ../lib/resources/platform.jar ../lib/resources/snmp4j-2.1.0.jar ../lib/resources/sqljdbc4.jar ../lib/resources/sqljdbc4.jar ../lib/resources/winrun4j.jar ../lib/resources/sigar.jar ../lib/resources/libsigar-amd64-linux.so ../libexec/${utiljar}" />
+
+  <!-- =========================== the fun begins =========================== -->
+
+  <target name="source_build" depends="daemon">
+    <delete dir= "${src_build}"/>
+	<mkdir dir= "${src_build}"/>
+	  <copy todir="${src_build}" flatten="true">
+		<fileset dir="./">
+			  <include name="**/*.jar"/>
+			  <type type="file"/>
+		</fileset>
+	  </copy>
+	  <antcall target="clean"/>
+	</target>
+	
+ <target name= "clean">
+    <delete includeemptydirs="true">
+        <fileset  dir=".">
+          <include name="**/build/**" />
+		  <include name="**/dist/**" />
+    </fileset>
+  </delete>
+ </target>	
+	
+  <!-- ============================== tayzgrid daemon =========================== -->
+  <target  depends="clean,dist" name="daemon"> 
+    <mkdir dir="${daemon}/build"/>
+    <mkdir dir="${daemon}/build/meta-inf"/>
+    <mkdir dir="${daemon}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${daemon}/build" source="${source-version}"  srcdir="${daemon_src}" target="1.6">
+      <classpath>
+      
+        <fileset dir="${cache}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${client}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${common}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${management}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${runtime}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${serialization}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        
+        <fileset dir="${storage}/dist">
+          <include name="**/*.jar"/>
+        </fileset>		
+        <fileset dir="${socketserver}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+			
+        <fileset dir="${resources}">
+          <include name="WinRun4J.jar"/>
+		  <include name="cache-api-1.0.0.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${daemon}/build" destfile="${daemon}/dist/${servicejar}">
+      <manifest>
+       <attribute name="main-class" value="${main_class_host}"/>
+       <attribute name="class-path" value="${class_path_service}"/>
+     </manifest>
+	 </jar>
+  </target>
+
+  <!-- ==================================================================== -->
+  <!-- =========================== jvcache jars =========================== -->
+  <!-- ==================================================================== -->
+   
+  <target depends="runtime,
+	serialization,
+	jmxsnmp,
+	parser,
+	common,
+	cluster,
+	storage,
+	cache,
+	management,
+	client,
+	socketserver,util" name="dist"/>
+ 
+  <!-- target to build runtime-->
+
+  <target name="runtime">
+    <mkdir dir="${runtime}/build"/>
+    <mkdir dir="${runtime}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${runtime}/build" source="${source-version}"  srcdir="${runtime_src}" target="1.6">
+      <classpath>
+        <fileset dir="${resources}">
+		  <include name="cache-api-1.0.0.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${runtime}/build" destfile="${runtime}/dist/${runtimejar}"/>
+  </target>
+  
+  <!-- target to build serailization-->
+  <target name="serialization">
+    <mkdir dir="${serialization}/build"/>
+    <mkdir dir="${serialization}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${serialization}/build" source="${source-version}"  srcdir="${serialization_src}" target="1.6">
+      <classpath>
+        <fileset dir="${runtime}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${resources}">
+          <include name="javassist.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${serialization}/build" destfile="${serialization}/dist/${serializationjar}"/>
+  </target>
+
+  <!-- target to build common-->
+  <target name="common" depends="jmxsnmp">
+    <mkdir dir="${common}/build"/>
+    <mkdir dir="${common}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${common}/build" source="${source-version}"  srcdir="${common_src}" target="${target-version}">
+      <classpath>
+        <fileset dir="${runtime}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${serialization}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${jmxsnmp}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+		<fileset dir="${parser}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${resources}">
+          <include name="cache-api-1.0.0.jar"/>
+		  <include name="log4jna.jar"/>
+          <include name="log4j-1.2.16.jar"/>
+          <include name="sigar.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${common}/build" destfile="${common}/dist/${commonjar}"/>
+  </target>
+
+  <!-- target to build parser-->
+  <target name="parser">
+    <mkdir dir="${parser}/build"/>
+    <mkdir dir="${parser}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${parser}/build" source="${source-version}"  srcdir="${parser_src}" target="${target-version}"/>
+    <jar basedir="${parser}/build" destfile="${parser}/dist/${parserjar}"/>
+  </target>
+
+  <!-- target to build cluster-->
+  <target name="cluster">
+    <mkdir dir="${cluster}/build"/>
+    <mkdir dir="${cluster}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${cluster}/build" source="${source-version}"  srcdir="${cluster_src}" target="${target-version}">
+      <classpath>
+        <fileset dir="${runtime}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${common}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${serialization}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        
+		<fileset dir="${resources}">
+		  <include name="cache-api-1.0.0.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${cluster}/build" destfile="${cluster}/dist/${clusterjar}"/>
+  </target>
+    
+
+
+  <!-- target to build jmxsnmp-->
+  <target name="jmxsnmp">
+     <mkdir dir="${jmxsnmp}/build"/>
+    <mkdir dir="${jmxsnmp}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${jmxsnmp}/build" source="${source-version}"  srcdir="${jmxsnmp_src}" target="${target-version}">
+      <classpath>
+        <fileset dir="${resources}">
+          <include name="guava-13.0.1.jar"/>
+          <include name="guice-3.0.jar"/>
+          <include name="guice-multibindings-3.0.jar"/>
+          <include name="paranamer-2.3.jar"/>
+          <include name="snmp4j-2.1.0.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${jmxsnmp}/build" destfile="${jmxsnmp}/dist/${jmxsnmpjar}"/>
+  </target>
+
+  <!-- target to build storage-->
+  <target name="storage">
+     <mkdir dir="${storage}/build"/>
+    <mkdir dir="${storage}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${storage}/build" source="${source-version}"  srcdir="${storage_src}" target="${target-version}">
+      <classpath>
+        <fileset dir="${common}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${serialization}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${storage}/build" destfile="${storage}/dist/${storagejar}"/>
+  </target>
+
+  <!-- target to build cache -->
+  <target name="cache">
+    <mkdir dir="${cache}/build"/>
+    <mkdir dir="${cache}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${cache}/build" source="${source-version}"  srcdir="${cache_src}" target="${target-version}">
+      <classpath>
+        <fileset dir="${cluster}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${common}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${parser}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${runtime}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${serialization}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${storage}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${jmxsnmp}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${resources}">
+          <include name="guava-13.0.1.jar"/>
+		   <include name="cache-api-1.0.0.jar"/>
+          <include name="javax.mail.jre16_1.4.3.jar"/>
+			<include name="sigar.jar"/>
+
+        </fileset>
+
+      </classpath>
+    </javac>
+
+    <jar basedir="${cache}/build" destfile="${cache}/dist/${cachejar}">
+      <fileset dir="${cache_src}">
+        <include name="**/*.cgt"/>
+      </fileset>
+    </jar>
+  </target>
+
+  <!-- target to build management-->
+  <target name="management">
+    <mkdir dir="${management}/build"/>
+    <mkdir dir="${management}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${management}/build" source="${source-version}"  srcdir="${management_src}" target="${target-version}">
+      <classpath>
+        <fileset dir="${runtime}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${common}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${cache}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${serialization}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+
+        <fileset dir="${cluster}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+		<fileset dir="${resources}">
+		  <include name="cache-api-1.0.0.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${management}/build" destfile="${management}/dist/${managementjar}"/>
+  </target>
+
+  <!-- target to build client-->
+  <target name="client">
+    <mkdir dir="${client}/build"/>
+    <mkdir dir="${client}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${client}/build" source="${source-version}"  srcdir="${client_src}" target="${target-version}">
+      <classpath>
+        <fileset dir="${cache}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+		<fileset dir="${parser}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${common}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${runtime}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        
+        <fileset dir="${serialization}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${jmxsnmp}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${management}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+		 <fileset dir="${resources}">
+		  <include name="cache-api-1.0.0.jar"/>
+        </fileset>
+		
+      </classpath>
+    </javac>
+    <jar basedir="${client}/build" destfile="${client}/dist/${clientjar}">
+	<service type="javax.cache.spi.cachingprovider" provider="com.alachisoft.tayzgrid.jsr107.spi.tayzgridcachingprovider"/>
+	</jar>
+	
+  </target>
+
+  <!-- target to build socket server-->
+  <target name="socketserver">
+    <mkdir dir="${socketserver}/build"/>
+    <mkdir dir="${socketserver}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${socketserver}/build" source="${source-version}"  srcdir="${socketserver_src}" target="${target-version}">
+      <classpath>
+       
+        <fileset dir="${cache}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${client}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${common}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${management}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+		<fileset dir="${parser}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${runtime}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${serialization}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        
+        <fileset dir="${storage}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${socketserver}/build" destfile="${socketserver}/dist/${socketserverjar}"/>
+  </target>
+  
+  <target name="util">
+    <mkdir dir="${util}/build/meta-inf"/>
+    <mkdir dir="${util}/build"/>
+    <mkdir dir="${util}/dist"/>
+    <javac debug="on" debuglevel="lines,vars,source" destdir="${util}/build" source="${source-version}"  srcdir="${util_src}" target="${target-version}">
+      <classpath>
+	
+        <fileset dir="${cache}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${common}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${runtime}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        
+        <fileset dir="${serialization}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${jmxsnmp}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${client}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+        
+        <fileset dir="${management}/dist">
+          <include name="**/*.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+    <jar basedir="${util}/build" destfile="${util}/dist/${utiljar}">
+      <manifest>
+       <attribute name="main-class" value="com.alachisoft.tayzgrid.tools.application"/>
+       <attribute name="class-path" value="${class_path}"/>
+     </manifest>
+   </jar>
+  </target>
+</project>
+
+

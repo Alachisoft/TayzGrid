@@ -1,0 +1,10 @@
+import "TaskEnumeratorResult.proto";
+
+option java_outer_classname="GetTaskEnumeratorResponseProtocol";
+
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message GetTaskEnumeratorResponse
+{
+	repeated TaskEnumeratorResult taskEnumeratorResult = 1;
+}

@@ -1,0 +1,103 @@
+﻿========================================================================
+      TayzGrid Events Sample Program Version 1.0      
+========================================================================
+
+PURPOSE OF THIS SAMPLE 
+=======================  
+This sample program demonstrates the usage of Events APIs.
+  
+
+CONVENTIONS
+===========
+For Linux  : $TG_HOME refers to installation path where TayzGrid is 
+             installed.        
+
+For Windows: %TG_HOME% refers to the installation path where TayzGrid is 
+             installed.
+
+             
+PREREQUISITES
+=============
+This sample program requires     
+
+    - TG_HOME environment variable must be set. TG_HOME refers to installation 
+      path where TayzGrid is installed. 
+
+      To set TG_HOME For Linux: 
+
+        - Open shell.
+		- Type "export TG_HOME=/opt/tayzgrid" without quotes and press ENTER key. 
+          Replace /opt/tayzgrid with the actual installation path if you have 
+          installed TayzGrid on non-default location. 
+
+
+      To set TG_HOME For Windows: 
+        - Open Command Prompt.
+        - type 'set TG_HOME="C:\Program Files\TayzGrid\"' without quotes 
+          and press enter. 
+
+    - jdk1.6 or higher
+    - Netbeans v6 or later if you are using NetBeans to build and 
+      run the project.
+	  
+However any other preffered method can TayzGrid to compile the source 
+located at $TG_HOME/samples/events/src/
+
+
+HOW TO CONFIGURE
+=================
+This sample program TayzGrids local cache "mypartitionedcache" for operations. 
+
+Local cache "mypartitionedcache" can be started via:
+
+    - startcache tool.
+     - startcache tool located at $TG_HOME/bin/startcache.sh (linux)
+     - startcache tool located at %TG_HOME%/bin/tools/startcache.bat (windows)
+
+         OR
+
+    - tayzgrid Manager currently shipped only for Windows.
+
+This sample program requires the event notifications to be turned on
+for local "mycache".
+    On Linux: Event notifications can be turned on/off by modifying the 
+    cache config file. Add 
+    <cache-notifications item-remove="true" 
+        item-add="true" 
+        item-update="true" 
+    cache-clear="true"/> to cache-settings section of local "mycache".
+   
+    On Windows: Open TayzGrid Manager.
+    - Add "mycache" to Local Caches list.
+    - Click "mycache" and Goto the options tab.
+    - Check all event notifications in Notifications group.
+    - Save and apply configuration.     
+
+
+HOW TO COMPILE AND RUN
+=======================
+Make sure JAVA_HOME environment path variable is set. 
+
+To Compile and Run via NetBeans:
+
+    - Open Netbeans IDE.
+    - Select File->Open Project
+    - Locate $TG_HOME/samples/events
+    - Add all .jar files to project libraries located at:
+           - $TG_HOME/lib
+           - $TG_HOME/lib/resources
+    - Choose Run -> Clean and Build Project (Shift-F11) 
+    - Press F6 to run the Project and observe output in NetBeans Output window.
+  
+         OR
+
+To Compile and Run via Ant:
+
+    - Make sure $ANT_HOME environment path variable is set.
+    - Start shell (terminal/cmd)
+    - Change directory to $TG_HOME/samples/events
+    - Type 'ant' (without quotes)
+    - This will compile the source and will place events.jar 
+       at $TG_HOME/samples/events/dist/
+    - Change directory to $TG_HOME/samples/events/dist/
+    - TayzGrid 'java -jar events.jar' without quotes to run the program.

@@ -1,0 +1,13 @@
+import "Exception.proto";
+import "EventId.proto";
+
+option java_outer_classname="AsyncOperationCompletedCallbackResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message AsyncOperationCompletedCallbackResponse 
+{
+	optional bytes key = 1;
+	optional bool success = 2;
+	optional int64 requestId = 3;
+	optional Exception exc = 4;
+	optional EventId eventId = 5;
+}

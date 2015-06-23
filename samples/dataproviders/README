@@ -1,0 +1,127 @@
+﻿========================================================================
+      TayzGrid Data Providers Sample Program
+========================================================================
+
+PURPOSE OF THIS SAMPLE 
+=======================  
+This sample program demonstrates the usage of Data Providers APIs.
+
+CONVENTIONS
+===========
+For Linux  : $TG_HOME refers to installation path where TayzGrid is 
+             installed.        
+
+For Windows: %TG_HOME% refers to the installation path where TayzGrid is 
+             installed.
+
+             
+PREREQUISITES
+=============
+This sample program requires     
+
+    - TG_HOME environment variable must be set. TG_HOME refers to installation 
+      path where TayzGrid is installed. 
+
+      To set TG_HOME For Linux: 
+
+        - Open shell.
+		- Type "export TG_HOME=/opt/tayzgrid" without quotes and press ENTER key. 
+          Replace /opt/tayzgrid with the actual installation path if you have 
+          installed TayzGrid on non-default location. 
+
+
+      To set TG_HOME For Windows: 
+        - Open Command Prompt.
+        - type 'set TG_HOME="C:\Program Files\TayzGrid\"' without quotes 
+          and press enter. 
+
+    - jdk1.6 or higher
+    - Netbeans v6 or later if you are using NetBeans to build and 
+      run the project.
+However any other preferred method can be used compile the source 
+located at $TG_HOME/samples/dataproviders/src/
+
+
+HOW TO CONFIGURE
+=================
+This sample program use the local cache "mypartitionedcache" for operations. 
+
+Local cache "mypartitionedcache" can be started via:
+
+	On Linux:
+		- startcache tool located at $TG_HOME/bin/startcache.sh (linux)
+		
+	On Windows:
+		- startcache tool located at %TG_HOME%/bin/tools/startcache.bat (windows)
+
+    OR
+
+    - TayzGrid Manager currently shipped only for Windows.
+
+
+This sample program requires read through / write through providers to setup 
+for cache.
+  
+    For Linux: 
+	----------
+	TayzGrid addbackingsource tool located at $TG_HOME/bin/addbackingsource
+	
+	It will take:
+    - cache id: "mycache" for this sample
+    - assembly path: $TG_HOME/samples/dataproviders/dist/dataproviders.jar
+    - class name: com.alachisoft.tayzgrid.samples.data.Customer for this sample
+    - provider name: any valid string value like "readthru" or "writethru"
+    - read thru/write thru option: follow the process to setup
+    - class attributes: _name, _age, _contactNo, _address, _gender
+    - dependant assembly folder: path of any other assemblies or jar files
+    
+	Follow above steps for class com.alachisoft.tayzgrid.samples.data.Customer
+	and attributes: _id, _name, _class, _category
+    
+  
+    For Windows:
+	------------
+	TayzGrid  Manager -> Backing Source Tab
+    - Click Add -> Browser -> Locate dataproviders.jar at:
+        %TG_HOME%/samples/dataproviders/dist/dataproviders.jar
+    - Under 'Selected Assemblies' select com.alachisoft.tayzgrid.samples.data.Product
+        and com.alachisoft.tayzgrid.samples.data.Customer
+    - Click add class -> Select all attributes under List of 'Selected Classes'
+    - Press OK
+
+
+HOW TO COMPILE AND RUN
+======================
+Make sure JAVA_HOME environment path variable is set. 
+You can run already compiled sample shipped with TayzGrid located at:
+ $TG_HOME/samples/dataproviders/dist/dataproviders.jar
+
+	To Run already shipped sample
+	-----------------------------
+		- Switch directory to $TG_HOME/samples/dataproviders/dist/
+		- TayzGrid 'java -jar dataproviders' without quotes to run the program.
+
+
+	To Compile and Run via NetBeans:
+	--------------------------------
+		- Open Netbeans IDE.
+		- Select File->Open Project
+		- Locate $TG_HOME/samples/dataproviders
+		- Add all .jar files to project libraries located at:
+			   - $TG_HOME/lib
+			   - $TG_HOME/lib/resources
+		- Choose Run -> Clean and Build Project (Shift-F11) 
+		- Press F6 to run the Project and observe output in NetBeans Output window.
+	  
+         OR
+
+	To Compile and Run via Ant:
+	---------------------------
+		- Make sure $ANT_HOME environment path variable is set.
+		- Start shell (terminal/cmd)
+		- Change directory to $TG_HOME/samples/dataproviders
+		- Type 'ant' (without quotes)
+		- This will compile the source and will place dataproviders.jar at
+			$TG_HOME/samples/dataproviders/dist/
+		- Change directory to $TG_HOME/samples/dataproviders/dist/
+		- TayzGrid 'java -jar dataproviders.jar' without quotes to run the program.

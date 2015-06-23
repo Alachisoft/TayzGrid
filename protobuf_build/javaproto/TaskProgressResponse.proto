@@ -1,0 +1,6 @@
+
+option java_outer_classname="TaskProgressResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message TaskProgressResponse {
+	optional bytes progresses = 1;
+}

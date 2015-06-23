@@ -1,0 +1,8 @@
+import "EnumerationPointer.proto";
+
+option java_outer_classname="GetNextChunkResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetNextChunkResponse {
+	optional EnumerationPointer enumerationPointer = 1;
+	repeated bytes keys = 2;
+}

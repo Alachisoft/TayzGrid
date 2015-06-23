@@ -1,0 +1,24 @@
+import "TagInfo.proto";
+import "NamedTagInfo.proto";
+
+option java_outer_classname="GetCacheItemResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetCacheItemResponse {
+	optional string lockId = 1;
+	optional int64 lockTicks = 2;
+	optional int32 priority = 3;
+	optional bool hasExpired = 4;
+	optional bool needsResync = 5;
+	optional int64 absExp = 6;
+	optional int64 sldExp = 7;
+	optional int32 flag = 8;
+	optional uint64 version = 9;
+	optional int64 creationTime = 10;
+	optional int64 lastModifiedTime = 11;
+	optional string group = 12;
+	optional string subGroup = 13;
+	optional TagInfo tagInfo = 14;
+	repeated bytes value = 15;
+	optional NamedTagInfo namedTagInfo = 16;
+	
+}

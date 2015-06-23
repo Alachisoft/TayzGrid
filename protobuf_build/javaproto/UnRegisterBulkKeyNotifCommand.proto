@@ -1,0 +1,10 @@
+
+option java_outer_classname="UnRegisterBulkKeyNotifCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message UnRegisterBulkKeyNotifCommand 
+{
+	optional sint32 removeCallbackId = 1;
+	optional sint32 updateCallbackId = 2;
+	repeated bytes keys = 3;
+	optional int64 requestId = 4;
+}

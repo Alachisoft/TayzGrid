@@ -1,0 +1,9 @@
+option java_outer_classname="BlockActivityEventResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message BlockActivityEventResponse 
+{
+	optional string uniqueKey = 1;
+	optional string serverIP = 2;
+	optional int64 timeoutInterval = 3;
+	optional int32 port = 4;
+}

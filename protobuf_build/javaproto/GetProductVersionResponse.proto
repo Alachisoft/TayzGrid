@@ -1,0 +1,8 @@
+import "ProductVersion.proto";
+option java_outer_classname="GetProductVersionResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message GetProductVersionResponse {
+	required ProductVersion productVersion=1;
+	
+}

@@ -1,0 +1,6 @@
+
+option java_outer_classname="HybridBulkResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message HybridBulkResponse {
+ optional bytes binaryResult = 1;
+}

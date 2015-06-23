@@ -1,0 +1,8 @@
+import "EventId.proto";
+option java_outer_classname="HashmapChangedEventResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message HashmapChangedEventResponse 
+{
+	optional bytes table = 1;
+	optional EventId eventId = 2;
+}

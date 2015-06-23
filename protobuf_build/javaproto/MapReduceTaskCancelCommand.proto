@@ -1,0 +1,6 @@
+
+option java_outer_classname="MapReduceTaskCancelCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message MapReduceTaskCancelCommand{
+	optional string taskId = 1;
+}

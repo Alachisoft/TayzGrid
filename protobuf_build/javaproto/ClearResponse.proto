@@ -1,0 +1,5 @@
+
+option java_outer_classname="ClearResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message ClearResponse {
+}

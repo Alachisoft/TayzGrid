@@ -1,0 +1,9 @@
+
+option java_outer_classname="AddAttributeProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message AddAttributeCommand {	
+	optional bytes key = 1;
+	optional int64 requestId = 2;
+	optional int64 absExpiration = 3;
+}

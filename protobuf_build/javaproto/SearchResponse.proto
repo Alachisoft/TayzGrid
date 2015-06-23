@@ -1,0 +1,7 @@
+import "QueryResultSet.proto";
+option java_outer_classname="SearchResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message SearchResponse {
+	repeated bytes keys = 1;
+	optional QueryResultSet queryResultSet = 2;
+}

@@ -1,0 +1,63 @@
+﻿========================================================================
+      TayzGrid Hibernate Integration      
+========================================================================
+
+CONVENTIONS
+===========
+For Linux  : $TG_HOME refers to installation path where TayzGrid is 
+             installed.        
+
+For Windows: %TG_HOME% refers to the installation path where TayzGrid is 
+             installed.
+
+             
+PREREQUISITES
+=============
+This sample program requires     
+
+    - TG_HOME environment variable must be set. TG_HOME refers to installation 
+      path where TayzGrid is installed. 
+
+      To set TG_HOME For Linux: 
+
+        - Open shell.
+		- Type "export TG_HOME=/opt/tayzgrid" without quotes and press ENTER key. 
+          Replace /opt/tayzgrid with the actual installation path if you have 
+          installed TayzGrid on non-default location. 
+
+
+      To set TG_HOME For Windows: 
+        - Open Command Prompt.
+        - type 'set TG_HOME="C:\Program Files\TayzGrid\"' without quotes 
+          and press enter. 
+
+    - jdk1.6 or higher
+    - Netbeans v6 or later if you are using NetBeans to build and 
+      run the project.
+	  
+However any other preferred method can be used to compile the source 
+located at $TG_HOME/integrations/hibernate/netbeans/
+
+
+HOW TO COMPILE AND RUN
+=======================
+Make sure JAVA_HOME environment path variable is set. 
+
+To Compile and Run via NetBeans:
+
+    - Open Netbeans IDE.
+    - Select File->Open Project
+    - Locate $TG_HOME/integrations/hibernate/netbeans
+    - Add the following .jar files to project libraries located at:
+           - $TG_HOME/lib
+			- tg-client.jar
+			- tg-common.jar
+			- tg-runtime.jar
+           - $TG_HOME/lib/resources
+		    - log4j-1.2.16.jar
+	- Add the following .jar file to the following path in order to build the project:
+		   - $TG_HOME/lib/resources/integrations
+			- hibernate-core-4.2.8.Final.jar
+			
+    - Choose Run -> Clean and Build Project (Shift-F11) 
+    

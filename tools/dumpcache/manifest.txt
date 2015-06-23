@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Specification-Title: NCache Dump Cache Tool
+Implementation-Title: com.alachisoft
+Specification-Vendor: Alachisoft.
+Specification-Version: 4.1.0.0
+Implementation-Version: build57
+Implementation-Vendor: Alachisoft.
+Class-Path: NCActivate.jar NCSerialization.jar NCRuntime.jar NCClient.jar javaReg.properties
+Main-Class: com.alachisoft.tools.dumpcache
+
+Name: com/alachisoft/tools/
+Sealed: true

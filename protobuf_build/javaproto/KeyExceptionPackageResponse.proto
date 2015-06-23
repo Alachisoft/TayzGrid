@@ -1,0 +1,10 @@
+import "Exception.proto";
+
+
+option java_outer_classname="KeyExceptionPackageResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message KeyExceptionPackageResponse 
+{
+	repeated bytes keys = 1;
+	repeated Exception exceptions = 2;	
+}

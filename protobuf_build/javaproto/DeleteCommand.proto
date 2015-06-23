@@ -1,0 +1,17 @@
+
+option java_outer_classname="DeleteCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message DeleteCommand {
+	optional bytes key = 1;
+	optional int64 requestId = 2;
+	optional int32 flag = 3;
+	optional bool isAsync = 4;
+	optional sint32 datasourceItemRemovedCallbackId = 5;
+	optional string lockId = 6;
+	optional int32 lockAccessType = 7;
+	optional uint64 version = 8;
+	optional string providerName = 9;
+	optional bool compareOld = 10;
+	optional int32 oldValueFlag = 11;
+	repeated bytes oldValue = 12;
+}

@@ -1,0 +1,7 @@
+
+option java_outer_classname="TaskCancelCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message TaskCancelCommand{
+	optional string taskId = 1;
+	optional bool cancelAll=  2;
+}

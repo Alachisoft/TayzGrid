@@ -1,0 +1,7 @@
+
+option java_outer_classname="LCDataResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message LCDataResponse {
+	optional bytes lcData = 1;
+	optional int32 opCode = 2;
+}

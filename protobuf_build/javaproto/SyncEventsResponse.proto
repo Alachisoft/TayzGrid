@@ -1,0 +1,8 @@
+import "EventInfo.proto";
+
+option java_outer_classname="SyncEventsResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message SyncEventsResponse {
+
+	repeated EventInfo eventInfo = 1;
+}

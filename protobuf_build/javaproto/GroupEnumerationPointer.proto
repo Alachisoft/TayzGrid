@@ -1,0 +1,9 @@
+option java_outer_classname="GroupEnumerationPointerProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message GroupEnumerationPointer {
+	optional sint32 chunkId = 1;
+	optional string id = 2;
+	optional string group = 3;
+	optional string subGroup = 4;	 
+}

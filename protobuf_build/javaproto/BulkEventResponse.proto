@@ -1,0 +1,7 @@
+import "BulkEventItemResponse.proto";
+
+option java_outer_classname="BulkEventResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message BulkEventResponse {	
+	repeated BulkEventItemResponse eventList = 1;		
+}

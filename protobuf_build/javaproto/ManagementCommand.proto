@@ -1,0 +1,20 @@
+option java_outer_classname="ManagementCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message ManagementCommand 
+{	
+	enum SourceType 
+	{
+		TOOL = 1;
+		MANAGER = 2;
+		MONITOR = 3;
+	}
+	
+	optional int64 requestId = 1;
+	optional int32 commandVersion = 2 [default=0];
+	optional string methodName = 3;
+	optional int32 overload = 4;
+	optional bytes arguments = 5;
+	optional string objectName = 6;		
+	optional SourceType source = 7;
+}

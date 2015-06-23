@@ -1,0 +1,25 @@
+TayzGrid Memcached Client SpyMemcached Java
+
+HOW TO COMPILE AND RUN
+=======================
+Make sure JAVA_HOME environment path variable is set. 
+
+To Compile and Run via NetBeans:
+
+	- Open Netbeans IDE.
+    - Select File->Open Project
+    - Locate $TG_HOME/integrations/memcached-wrapper/plug-ins/spymemcached/netbeans
+	- Add the following .jar file to the following path in order to build the project:
+		- $TG_HOME/lib/resources/integrations
+			- org.springframework.beans-2.5.5.a.jar
+
+	- Make sure the following .jar files are present in the following locations:
+		- $TG_HOME/lib/integrations
+			- tg-memcached-provider.jar
+		- $TG_HOME/lib/resources
+			- log4j-1.2.16
+			- log4jna
+			- org-apache-commons-logging
+			- slf4j-api-1.7.5
+	
+	- Choose Run -> Clean and Build Project (Shift-F11) 

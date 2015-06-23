@@ -1,0 +1,10 @@
+
+option java_outer_classname="UnlockCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message UnlockCommand 
+{
+	optional bytes key = 1;
+	optional string lockId = 2;
+	optional bool preemptive = 3;
+	optional int64 requestId = 4;
+}

@@ -1,0 +1,9 @@
+
+option java_outer_classname="VerifyLockResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message VerifyLockResponse 
+{
+	optional string lockId = 1;
+	optional int64 lockExpiration = 2;
+	optional bool success = 3;
+}

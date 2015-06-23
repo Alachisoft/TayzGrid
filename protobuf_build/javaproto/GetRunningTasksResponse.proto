@@ -1,0 +1,6 @@
+
+option java_outer_classname="GetRunningTasksResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetRunningTasksResponse {
+	repeated string runningTasks = 1;
+}

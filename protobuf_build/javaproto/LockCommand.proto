@@ -1,0 +1,9 @@
+
+option java_outer_classname="LockCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message LockCommand 
+{
+	optional bytes key = 1;
+	optional int64 lockTimeout = 2;
+	optional int64 requestId = 3;
+}

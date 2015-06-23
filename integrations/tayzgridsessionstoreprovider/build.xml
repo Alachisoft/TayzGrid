@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!-- Express Setup build file for  building a war and jar -->
+
+<project name="build" default="war" basedir=".">
+
+    <property file="build.properties"/>
+	<property name="mainsrc" value="src"/>
+    <property name="src.dir" value="entsrc"/>
+    <property name="dest.dir" value="build"/>
+    <property name="war.name" value="JavaSessionApp.war"/>
+    <property name="jar.name" value="tg-sessionprovider.jar"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="project.dir" value="."/>
+	<property name="libdir" value="../../build/TayzGrid/"/>
+	
+	<property name="ifdef" value="/*"/>
+	<property name="enddef" value="*/"/>
+
+	<target name="init" description="Create 'destination' and 'distribution' directories.">
+		<mkdir dir="${dest.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+		<copy  overwrite= "true" todir="${src.dir}">
+        <fileset dir="${mainsrc}">                
+        <include name="**/*.java"/>       
+            </fileset>
+            <filterset begintoken="//[" endtoken="]">
+                <filter token="enterprise" value="${ifdef}"/>
+                <filter token="endenterprise" value="${enddef}"/>
+            </filterset>
+        </copy>
+	</target>
+
+    <target name="clean" description="Delete all generated files and folders.">
+		<delete file="${dist.dir}/${war.name}" />
+		<delete file="${dist.dir}/${jar.name}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${dest.dir}" />
+    </target>
+
+	<target name="compile" depends="clean,init" description="Compile the source code.">
+		<javac srcdir="${project.dir}/${src.dir}" destdir="${dest.dir}" excludes="*.scc" >
+			<classpath path="${lib.dir}/${servlet2.4.jar}"/>
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar" />
+					<exclude name="servlet*.jar" />
+				</fileset>
+			</classpath>
+			<classpath>
+				<fileset dir="${libdir}/lib/">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile" description="Create the 'jar' file from the current source.">
+		<copy todir="${dest.dir}" includeEmptyDirs="false">
+		    <fileset dir="${project.dir}/${src.dir}/java">
+				<exclude name="**/*.java" />
+				<exclude name="*.scc" />
+			</fileset>
+		</copy>
+		<jar destfile="${dist.dir}/${jar.name}">
+			<zipfileset dir="${dest.dir}">
+				<exclude name="**/*.java" />
+				<exclude name="*.scc" />
+			</zipfileset>
+		</jar>
+	</target>
+
+	<target name="war" depends="compile,jar" description="Create the 'war' that will be depolyed on the web server(s).">
+		<war destfile="${dist.dir}/${war.name}" webxml="${project.dir}/web/WEB-INF/web.xml">
+			<classes dir="${dest.dir}">
+				<include name="**/examples/**"/>
+				<exclude name="*.scc" />
+			</classes>
+			<classes dir="${libdir}/config">
+				<include name="license.properties" />
+				<exclude name="*.scc" />
+			</classes>
+			<lib dir="${lib.dir}">
+				<include name="*.jar" />
+				<exclude name="servlet*.jar" />
+				<exclude name="log*.jar" if="excludelog4j" />
+				<exclude name="*.scc" />
+			</lib>
+			<lib dir="${jvcache.libdir}">
+				<include name="*.jar" />
+				<exclude name="*.scc" />
+			</lib>
+			<lib dir="${dist.dir}">
+				<include name="*.jar" />
+				<exclude name="*.scc" />
+			</lib>
+            <webinf dir="${project.dir}/web/WEB-INF" />
+			<fileset dir="${project.dir}/web">
+				<exclude name="WEB-INF/*.*" />
+				<exclude name="*.scc" />
+			</fileset>
+		</war>
+	</target>
+
+	<target name="deploy" depends="war" description="Deploy the created 'war' file on the web server.">
+		<copy file="${dist.dir}/${war.name}" todir="${deploy.dir}"/>
+	</target>
+
+	<target name="undeploy" description="Undeploy the web application from the web server.">
+		<delete file="${deploy.dir}/${war.name}"/>
+    </target>
+
+	<target name="redeploy" depends="undeploy,deploy" description="Undeploy and then Deploy the web application on the web server." />
+
+</project>

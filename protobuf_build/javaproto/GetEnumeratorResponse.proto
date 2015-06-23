@@ -1,0 +1,6 @@
+
+option java_outer_classname="GetEnumeratorResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetEnumeratorResponse {
+	repeated bytes keys = 1;
+}

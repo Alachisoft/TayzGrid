@@ -1,0 +1,10 @@
+option java_outer_classname="GetCacheBindingCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message GetCacheBindingCommand {
+	optional int64 requestId = 1;
+	optional string cacheId = 2;
+	optional bool isRunning = 3; 
+	optional bool isDotnetClient = 4 [default=true];
+
+}

@@ -1,0 +1,8 @@
+import "KeyValuePackageResponse.proto";
+
+
+option java_outer_classname="BulkGetResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message BulkGetResponse {
+	optional KeyValuePackageResponse keyValuePackage = 1;
+}

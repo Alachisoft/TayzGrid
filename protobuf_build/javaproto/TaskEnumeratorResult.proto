@@ -1,0 +1,14 @@
+import "TaskEnumeratorPointer.proto";
+import "TaskEnumeratorEntry.proto";
+
+option java_outer_classname="TaskEnumeratorResultProtocol";
+
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message TaskEnumeratorResult
+{
+	optional TaskEnumeratorPointer pointer = 1;
+	optional TaskEnumeratorEntry entry = 2;
+	optional string nodeAddress = 3;
+	optional bool isLastResult = 4;
+}

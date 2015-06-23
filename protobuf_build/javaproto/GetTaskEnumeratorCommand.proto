@@ -1,0 +1,10 @@
+import "TaskEnumeratorPointer.proto";
+
+option java_outer_classname="GetTaskEnumeratorCommandProtocol";
+
+package com.alachisoft.tayzgrid.common.protobuf;
+
+message GetTaskEnumeratorCommand
+{
+	optional TaskEnumeratorPointer pointer = 1;
+}

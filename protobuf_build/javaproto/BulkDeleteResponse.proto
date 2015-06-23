@@ -1,0 +1,5 @@
+option java_outer_classname="BulkDeleteResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message BulkDeleteResponse {
+	
+}

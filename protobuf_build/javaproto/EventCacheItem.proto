@@ -1,0 +1,12 @@
+option java_outer_classname="EventCacheItemProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message EventCacheItem
+{
+	repeated bytes value = 1;
+	optional bool resyncExpiredItems = 2;
+	optional string resyncProviderName = 3;
+	optional string group = 4;
+	optional string subGroup = 5;
+	optional uint64 itemVersion = 6;
+	optional int32 priority = 7;
+}

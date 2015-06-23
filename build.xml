@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <project name="tayzgrid-custom-build" default="installation" basedir=".">
+  <description>builds tayzgrid components outside netbeans</description>
+  <property name="src" location="./src" />
+  <property name="src_build" location="${src}/dist_all" />
+  <property name="tools_src" location="./tools" />
+  <property name="tools_build" location="${tools_src}/dist_all" />
+  <property name="samples_src" location="./samples" />
+   <property name="samples_build" location="${samples_src}/dist_all" />
+  <property name="integrations_src" location="./integrations"/>
+  <property name="integrations_build" location="${integrations_src}/dist_all" />
+  <property name="resources" location="./resources" />
+  <property name="install.dir" location="build/tayzgrid"/>
+
+  <property name="lib" location="${install.dir}/lib"/>
+  <property name="lib-resources" location="${lib}/resources"/>
+  <property name="lib-integrations" location="${lib}/integrations"/>
+  <property name="libexec" location="${install.dir}/libexec"/>
+  <property name="memcache-gateway" location="${libexec}/memcache-gateway"/>
+
+  <property name="servicejarpath" value="${src_build}/tayzgridd.jar"/>
+  <property name="utiljarpath" value="${src_build}/tg-util.jar" />
+  <property name="socketserverjarpath" value="${src_build}/tg-socketserver.jar"/>
+  
+  <property name="memcachedgateway" value="${integrations_build}/tg-memcachegateway.jar"/>
+  <property name="memcachedservice" value="${integrations_build}/tgmemcached.jar"/>
+  
+
+ 
+<!-- ===================================== the fun begins ====================================== -->
+
+  
+  <target name="installation" depends="buildall" >
+    <delete dir="${install.dir}"/>
+    <mkdir dir="${install.dir}"/>
+    <mkdir dir="${lib}"/>
+    <mkdir dir="${lib-resources}"/>
+    <mkdir dir="${lib-integrations}"/>
+    <mkdir dir="${libexec}"/>
+	<mkdir dir="${memcache-gateway}"/>
+	
+    <!-- =================================== copy  jars =================================== -->
+    
+	<move file="${servicejarpath}" todir="${libexec}"/>
+    <move file="${utiljarpath}" todir="${libexec}"/>
+	<move file="${socketserverjarpath}" todir="${libexec}"/>
+	<move file="${memcachedgateway}" todir="${memcache-gateway}"/>
+    <move file="${memcachedservice}" todir="${memcache-gateway}"/>
+
+	<move todir="${lib}">
+		<fileset dir="${src_build}"/>
+    </move>
+  
+	<move todir="${lib-integrations}">
+		<fileset dir="${integrations_build}"/>
+    </move> 	
+	
+	<copy todir="${lib-resources}">
+		<fileset dir="${resources}">
+		<exclude name="${resources}/integrations"/>
+		</fileset>
+    </copy> 
+  
+	<move todir="${libexec}">
+		<fileset dir="${tools_build}"/>
+    </move> 
+
+	<delete dir="${src_build}"/>
+	<delete dir="${tools_build}"/>
+	<delete dir="${integrations_build}"/>
+	<delete dir = "${samples_build}" />
+</target>
+
+  
+  <!-- ============================== build all==================================== -->
+  <target name="buildall">
+   <ant antfile="${src}/build.xml" inheritall="false" />
+   <ant antfile="${tools_src}/build.xml" inheritall="false" />
+   <ant antfile="${integrations_src}/build.xml" inheritall="false" />
+   <ant antfile="${samples_src}/build.xml" inheritall="false" />
+  </target>
+
+ 
+</project>
+
+

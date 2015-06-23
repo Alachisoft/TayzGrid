@@ -1,0 +1,7 @@
+
+option java_outer_classname="KeyValuePairProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message KeyValuePair {
+	optional string key = 1;
+	optional string value = 2;
+}

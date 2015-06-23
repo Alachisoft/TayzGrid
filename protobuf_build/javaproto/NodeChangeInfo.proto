@@ -1,0 +1,10 @@
+
+option java_outer_classname="NodeChangeInfoProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message NodeChangeInfo {
+	optional string node = 1;
+	repeated string keys = 2;
+	repeated int32 changeType = 3;
+	repeated int32 changeIds = 4;
+	repeated bytes value = 5;
+}

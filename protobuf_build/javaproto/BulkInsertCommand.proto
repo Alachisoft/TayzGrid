@@ -1,0 +1,11 @@
+import "InsertCommand.proto";
+
+
+option java_outer_classname="BulkInsertCommandProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message BulkInsertCommand {
+	optional int64 requestId = 1;
+	optional sint32 datasourceUpdatedCallbackId = 2;
+	optional string providerName = 3;
+	repeated InsertCommand insertCommand = 4;
+}

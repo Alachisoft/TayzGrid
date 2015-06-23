@@ -1,0 +1,9 @@
+
+option java_outer_classname="InsertReponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message InsertResponse {
+	optional uint64 version = 1;
+	optional bool success = 2;
+	optional int32 flag = 3;
+	repeated bytes existingValue = 4;
+}

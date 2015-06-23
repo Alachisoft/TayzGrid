@@ -1,0 +1,5 @@
+option java_outer_classname="GetKeysByTagResponseProtocol";
+package com.alachisoft.tayzgrid.common.protobuf;
+message GetKeysByTagResponse {
+	repeated bytes keys = 1;
+}
