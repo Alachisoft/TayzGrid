@@ -1,10 +1,10 @@
-** TayzGrid: Highly Scalable In-Memory Data Grid for Java and .NET **
+**TayzGrid: Highly Scalable In-Memory Data Grid for Java and .NET**
 
 TayzGrid is an extremely fast and scalable Open Source In-Memory Data Grid for Java and .NET applications. Use TayzGrid for database caching, Java Web Session Persistence, Hibernate Second Level Cache, Java Spring Cache, Memcached Wrapper, and much more.
 
 TayzGrid is used in mission critical applications. See more details about TayzGrid at www.tayzgrid.com.
 
-** Features: **
+**Features:**
 
 -	Cache CRUD operations
 -	Bulk CRUD operations
