@@ -2,7 +2,7 @@
 
 TayzGrid is an extremely fast and scalable Open Source In-Memory Data Grid for Java and .NET applications. Use TayzGrid for database caching, Java Web Session Persistence, Hibernate Second Level Cache, Java Spring Cache, Memcached Wrapper, and much more.
 
-TayzGrid is used in mission critical applications. See more details about TayzGrid at www.tayzgrid.com.
+TayzGrid is used in mission critical applications. See more details about TayzGrid at www.alachisoft.com/tayzgrid/.
 
 **Features:**
 
@@ -21,4 +21,4 @@ TayzGrid is used in mission critical applications. See more details about TayzGr
 -	Hibernate Second Level Cache provider
 -	Runs in Microsoft Azure, Amazon, and any other Cloud platform
 
-See more details at http://www.tayzgrid.com.
+See more details at http://www.alachisoft.com/tayzgrid/.
